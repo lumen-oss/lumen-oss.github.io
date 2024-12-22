@@ -1,4 +1,5 @@
 ---
+slug: /
 id: intro
 title: Introduction
 sidebar_label: Tutorial

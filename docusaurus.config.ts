@@ -36,8 +36,10 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
         },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
