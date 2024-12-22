@@ -24,6 +24,10 @@ be bugs here and there!
 
 :::
 
-To install `rocks`, head over to the [Getting Started](/docs/tutorial/getting-started) section.
+## Sitemap
 
-To get straight to the tutorial, skip over to the [Creating a Project](/docs/tutorial/creating-a-project) section.
+The site is divided into sections:
+- To install `rocks`, head over to the [Getting Started](/docs/tutorial/getting-started) section.
+- To learn `rocks` by doing, skip over to the [Creating a Project](/docs/tutorial/creating-a-project) section.
+- To learn small, specific tasks, head over to the [Guides](/guides).
+- For an API reference visit the [Reference](/reference).
