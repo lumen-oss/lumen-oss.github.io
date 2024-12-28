@@ -16,12 +16,12 @@ up being complicated if we use github pages.
 
 Make tutorial on how to develop a CLI app using rocks.
 
-- Introduction
-- Getting started
-- Creating a Project
-- Adding Dependencies
-- Making the CLI application
-- Testing the application
+- [x] Introduction
+- [x] Getting started
+- [x] Creating a Project
+- [x] Adding Dependencies
+- [x] Making the CLI application
+- [ ] Testing the application
 - Preparing our code
     - Formatting the current document
     - Running `luacheck`
