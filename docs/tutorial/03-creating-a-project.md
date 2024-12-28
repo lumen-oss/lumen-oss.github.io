@@ -124,4 +124,4 @@ Project Version: 0.1.0-1
 Project location: /home/vhyrro/my-lua-project
 ```
 
-We're now ready to write some meaningful code in the next chapter!
+We're almost ready to write some meaningful code in the next chapter!
