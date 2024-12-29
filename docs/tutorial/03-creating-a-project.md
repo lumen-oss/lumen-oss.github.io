@@ -4,7 +4,7 @@ title: Creating a Project
 ---
 
 In the next chapters we will learn how to create, manage and publish a Lua project.
-We will cover dependencies, the rockspec format and more all the way up to API keys!
+We will cover dependencies, the `rocks.toml` format and more all the way up to API keys!
 
 To start writing Lua, we must initialize a project where we will store our code.
 We'll store our code in a `my-lua-project/` directory.
@@ -27,7 +27,7 @@ own name or username!
 > Labels: learning
 > Maintainer: vhyrro
 > What is the lowest Lua version you support? 5.1
-Done! Please enter `my-lua-project/project.rockspec` and provide a URL for your project.
+Done!
 ```
 
 :::info could not fetch repo metadata
@@ -37,7 +37,7 @@ disappearing and showing the prompts. This is not an issue, has no impact and ca
 ignored, see [the explanation](todo-path-to-explanation) if you're interested.
 :::
 
-### Setting a URL
+### Checking out Our Project
 
 You'll see that our `my-lua-project/` directory was created. Let's enter the directory
 and start work on our project!
@@ -46,65 +46,29 @@ Inside of our project, you should see a single file was generated:
 
 ```bash title="tree $(pwd)"
 /home/vhyrro/my-lua-project
-└── project.rockspec
+└── rocks.toml
 ```
 
-Let's enter the file. Here's the contents of the rockspec:
+Let's enter the file. Here's the contents of the project file:
 
-```lua title="project.rockspec"
-rockspec_format = "3.0"
+```lua title="rocks.toml"
 package = "my-lua-project"
 version = "0.1.0"
 
-source = {
-    -- highlight-next-line
-    url = "*** provide a url here ***",
-}
+[description]
+summary = "A sample project."
+maintainer = "vhyrro"
+license = "MIT"
+labels = ["learning"]
 
-description = {
-    summary = "A sample project.",
-    maintainer = "vhyrro",
-    license = "MIT",
-    labels = { "learning" },
-}
+[dependenies]
+lua = ">= 5.1"
 
-dependencies = {
-    "lua>=5.1",
-}
-
-build = {
-    type = "builtin",
-}
+[build]
+type = "builtin"
 ```
 
-Notice the line we highlighted in the code block -- we must to supply a URL from where
-our Lua code will be pulled during publishing.
-
-Rockspecs describe instructions on how to build and ship your Lua code.
-To do so, they need a link where the package manager can pull code from.
-
-If you've already created a git repository for you code, this URL should be the link to that:
-
-```diff title="project.rockspec"
-source = {
--    url = "*** provide a url here ***",
-+    url = "https://github.com/vhyrro/my-lua-project",
-}
-```
-
-If you *do not* have your code published you can simply replace this URL with a bogus value:
-
-```diff title="project.rockspec"
-source = {
--    url = "*** provide a url here ***",
-+    url = "https://example.com/my/project",
-}
-```
-
-:::warning
-You will have to replace this with a valid URL in order to be able to use `rocks upload`.
-Until then, you can keep the bogus URL. We'll be sure to remind you :)
-:::
+The `rocks.toml` file describes instructions on how to build and ship your Lua code.
 
 ### Checking our Progress
 

@@ -5,51 +5,19 @@ title: Adding Dependencies
 
 Lua has a very little standard library, so let's download some dependencies to get started.
 Since we want to develop a CLI, we need a library capable of parsing flags and arguments.
-To do so, we will use [`argparse`](https://luarocks.org/modules/argparse/argparse).
-
-First, edit your `project.rockspec` and add the following:
-
-```lua title="project.rockspec"
-rockspec_format = "3.0"
-package = "my-lua-project"
-version = "0.1.0"
-
-source = {
-    url = "https://example.com/thing/thing",
-}
-
-description = {
-    summary = "A sample project.",
-    maintainer = "vhyrro",
-    license = "MIT",
-    labels = { "learning" },
-}
-
-dependencies = {
-    "lua>=5.1",
-    -- highlight-next-line
-    "argparse ~> 0.7",
-}
-
-build = {
-    type = "builtin",
-}
-```
-
-The `~> 0.7` means "the latest version that starts with `0.7`". As of making this tutorial, this is version `0.7.1`.
-
-Let's build our project, which will download the new dependency:
-
+To do so, we will use [`argparse`](https://luarocks.org/modules/argparse/argparse). We'll install it with the following command:
 ```sh
-rocks build
+rocks add argparse~>0.7
 ```
 
 :::note
 This may take a while depending on your internet connection!
 :::
 
+The `~>0.7` means "the latest version that starts with `0.7`". As of making this tutorial, this is version `0.7.1`.
+If you hadn't provided a version, the absolute latest version would have been chosen.
 
-To get a list of all current installed dependencies, we can run:
+To get a list of all currently installed dependencies, we can run:
 
 ```sh
 rocks list
@@ -64,12 +32,15 @@ argparse
 
 ### Testing Our Changes
 
-To enter a `lua` REPL, run the following command:
+To check whether `argparse` is loaded we can enter a Lua REPL and play around
+with our code. Just running `lua` will *not* load our dependenices. To enter a
+`lua` REPL with our dependencies loaded, we need to run the following command:
 
 ```sh
 rocks lua
 ```
 
+This acts as a direct wrapper around the `lua` program.
 Once in the REPL, let's try to require our `argparse` code. Type `require("argparse").version`
 and press enter. Below is the successful output:
 

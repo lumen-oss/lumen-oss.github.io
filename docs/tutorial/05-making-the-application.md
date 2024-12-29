@@ -6,13 +6,13 @@ title: Making the CLI Application
 `rocks` expects to find code under either a `src/` or `lua/` directory.
 For this series, we'll store our code under `src/`.
 
-Inside the project directory (where your `project.rockspec` resides) create a `src/main.lua` file.
+Inside the project directory (where your `rocks.toml` resides) create a `src/main.lua` file.
 This acts as the main file `rocks` will execute.
 
 Here's the output of `tree .` after creating the file:
 ```sh title="tree ."
 .
-├── project.rockspec
+├── rocks.toml
 └── src
     └── main.lua
 
