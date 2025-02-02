@@ -7,33 +7,20 @@ Lua has a very little standard library, so let's download some dependencies to g
 Since we want to develop a CLI, we need a library capable of parsing flags and arguments.
 To do so, we will use [`argparse`](https://luarocks.org/modules/argparse/argparse). We'll install it with the following command:
 ```sh
-rocks add argparse~>0.7
+rocks add argparse@0.7
 ```
 
 :::note
 This may take a while depending on your internet connection!
 :::
 
-The `~>0.7` means "the latest version that starts with `0.7`". As of making this tutorial, this is version `0.7.1`.
-If you hadn't provided a version, the absolute latest version would have been chosen.
-
-To get a list of all currently installed dependencies, we can run:
-
-```sh
-rocks list
-```
-
-Below is the expected output:
-
-```sh title="rocks list"
-argparse
-└── 0.7.1-1
-```
+The `@0.7` means we're targeting a specific version of `argparse`.
+If you hadn't provided a version, the latest version would have been chosen.
 
 ### Testing Our Changes
 
 To check whether `argparse` is loaded we can enter a Lua REPL and play around
-with our code. Just running `lua` will *not* load our dependenices. To enter a
+with our code. However, just running `lua` will *not* load our dependenices. To enter a
 `lua` REPL with our dependencies loaded, we need to run the following command:
 
 ```sh
@@ -52,3 +39,4 @@ Lua 5.4.7  Copyright (C) 1994-2024 Lua.org, PUC-Rio
 ```
 
 Congratulations! We're now ready to start writing code in the next chapter.
+You can exit the REPL by pressing `Ctrl+D` or typing `os.exit()` and pressing enter.

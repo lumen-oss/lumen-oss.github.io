@@ -37,7 +37,7 @@ disappearing and showing the prompts. This is not an issue, has no impact and ca
 ignored, see [the explanation](todo-path-to-explanation) if you're interested.
 :::
 
-### Checking out Our Project
+### Exploring Our Project
 
 You'll see that our `my-lua-project/` directory was created. Let's enter the directory
 and start work on our project!
@@ -54,15 +54,13 @@ Let's enter the file. Here's the contents of the project file:
 ```lua title="rocks.toml"
 package = "my-lua-project"
 version = "0.1.0"
+lua = ">= 5.1"
 
 [description]
 summary = "A sample project."
 maintainer = "vhyrro"
 license = "MIT"
 labels = ["learning"]
-
-[dependenies]
-lua = ">= 5.1"
 
 [build]
 type = "builtin"
