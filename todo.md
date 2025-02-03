@@ -21,7 +21,7 @@ Make tutorial on how to develop a CLI app using rocks.
 - [x] Creating a Project
 - [x] Adding Dependencies
 - [x] Making the CLI application
-- [ ] Testing the application
+- [x] Testing the application
 - Preparing our code
     - Formatting the current document
     - Running `luacheck`

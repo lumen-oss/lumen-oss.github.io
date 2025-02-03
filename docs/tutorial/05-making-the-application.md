@@ -49,6 +49,12 @@ You should see `Testing our code!` printed right back at you in the console!
 In preparation for the next chapter, let's create some extra logic for our program:
 
 ```lua title="src/main.lua"
+--- Checks whether input has the word "hello"
+--- @param input string
+local function has_hello(input)
+    return input:lower():find("hello") ~= nil
+end
+
 local argparse = require("argparse")
 
 -- Create an argument parser
