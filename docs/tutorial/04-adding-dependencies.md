@@ -17,7 +17,7 @@ This may take a while depending on your internet connection!
 The `@0.7` means we're targeting a specific version of `argparse`.
 If you hadn't provided a version, the latest version would have been chosen.
 
-### Testing Our Changes
+## Testing Our Changes
 
 To check whether `argparse` is loaded we can enter a Lua REPL and play around
 with our code. However, just running `lua` will *not* load our dependenices. To enter a

@@ -14,7 +14,7 @@ In Lua, testing is primarily done using the
 `rocks` takes care of installing `busted` for you when running tests!
 :::
 
-### Restructuring Our Project
+## Restructuring Our Project
 
 To start testing our code, we need to restructure our project a little. First, let's
 move out our newly made `has_hello` function into its own file. Create a new file
@@ -53,7 +53,7 @@ else
 end
 ```
 
-### Writing our First Test
+## Writing our First Test
 
 Now that we have our code structured, let's write our first test. Tests are usually stored in
 a `spec/` directory, and each test file must end in `_spec.lua`. Create a new
@@ -79,7 +79,7 @@ describe("has_hello", function()
 end)
 ```
 
-### Running the Tests
+## Running the Tests
 
 We're now ready to run our tests! `rocks test` will run all the tests in your
 project. After the automatic installation of `busted` you should see the following output:

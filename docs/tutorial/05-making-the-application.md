@@ -19,7 +19,7 @@ Here's the output of `tree .` after creating the file:
 2 directories, 2 files
 ```
 
-### Ensuring the Project Runs
+## Ensuring the Project Runs
 
 First, let's put some code in our `main.lua` file:
 
@@ -44,7 +44,7 @@ rocks run "Testing our code!"
 
 You should see `Testing our code!` printed right back at you in the console!
 
-### Expanding the Code
+## Expanding the Code
 
 In preparation for the next chapter, let's create some extra logic for our program:
 

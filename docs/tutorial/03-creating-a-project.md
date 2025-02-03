@@ -38,7 +38,7 @@ can be safely ignored.
 <!--see [the explanation](todo-path-to-explanation) if you're interested.-->
 :::
 
-### Exploring Our Project
+## Exploring Our Project
 
 You'll see that our `my-lua-project/` directory was created. Let's enter the directory
 and start work on our project!
@@ -69,7 +69,7 @@ type = "builtin"
 
 The `rocks.toml` file describes instructions on how to build and ship your Lua code.
 
-### Checking our Progress
+## Checking our Progress
 
 To check whether our project was made successfully, first make sure you're in the `my-lua-project` directory.
 Now, you can run a secret command:
