@@ -33,8 +33,9 @@ Done!
 :::info could not fetch repo metadata
 Depending on the speed of your computer you may have noticed that we got a
 warning saying "could not fetch remote repo metadata" for a brief moment before
-disappearing and showing the prompts. This is not an issue, has no impact and can be safely
-ignored, see [the explanation](todo-path-to-explanation) if you're interested.
+disappearing and showing the prompts. This is not an issue, has no impact and
+can be safely ignored.
+<!--see [the explanation](todo-path-to-explanation) if you're interested.-->
 :::
 
 ### Exploring Our Project

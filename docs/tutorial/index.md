@@ -27,7 +27,7 @@ be bugs here and there!
 ## Sitemap
 
 The site is divided into sections:
-- To install `rocks`, head over to the [Getting Started](/docs/tutorial/getting-started) section.
-- To learn `rocks` by doing, skip over to the [Creating a Project](/docs/tutorial/creating-a-project) section.
-- To learn small, specific tasks, head over to the [Guides](/guides).
-- For an API reference visit the [Reference](/reference).
+- To install `rocks`, head over to the [Getting Started](/tutorial/getting-started) section.
+- To learn `rocks` by doing, skip over to the [Creating a Project](/tutorial/creating-a-project) section.
+<!--- To learn small, specific tasks, head over to the [Guides](/guides).-->
+<!--- For an API reference visit the [Reference](/reference).-->
