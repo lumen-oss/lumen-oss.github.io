@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Rocks',
-  tagline: 'Bringing Lua to the Modern Age',
+  title: 'Lux',
+  tagline: 'A luxurious package manager for Lua',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -18,7 +18,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'rocks', // Usually your GitHub org/user name.
-  projectName: 'rocks', // Usually your repo name.
+  projectName: 'lux', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
@@ -51,9 +51,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'Rocks',
+      title: 'Lux',
       logo: {
-        alt: 'Rocks Logo',
+        alt: 'Lux Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -64,7 +64,7 @@ const config: Config = {
           label: 'Tutorial',
         },
         {
-          href: 'https://github.com/nvim-neorocks/rocks',
+          href: 'https://github.com/nvim-neorocks/lux',
           label: 'GitHub',
           position: 'right',
         },
@@ -87,12 +87,12 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/nvim-neorocks/rocks',
+              href: 'https://github.com/nvim-neorocks/lux',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} The Rocks Team. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} The Lux Team. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

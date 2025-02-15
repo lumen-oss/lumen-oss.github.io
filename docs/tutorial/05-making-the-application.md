@@ -3,16 +3,16 @@ id: making-the-application
 title: Making the CLI Application
 ---
 
-`rocks` expects to find code under either a `src/` or `lua/` directory.
+`lux` expects to find code under either a `src/` or `lua/` directory.
 For this series, we'll store our code under `src/`.
 
-Inside the project directory (where your `rocks.toml` resides) create a `src/main.lua` file.
-This acts as the main file `rocks` will execute.
+Inside the project directory (where your `lux.toml` resides) create a `src/main.lua` file.
+This acts as the main file `lux` will execute.
 
 Here's the output of `tree .` after creating the file:
 ```sh title="tree ."
 .
-├── rocks.toml
+├── lux.toml
 └── src
     └── main.lua
 
@@ -39,7 +39,7 @@ print(args.input)
 We're now ready to see if our code works! Run the following command to see your code in action:
 
 ```sh
-rocks run "Testing our code!"
+lux run "Testing our code!"
 ```
 
 You should see `Testing our code!` printed right back at you in the console!
@@ -74,11 +74,11 @@ end
 We've transformed our program to check if the input contains the word "hello".
 Below are some example outputs:
 
-```none title='rocks run "Hello, world!"'
+```none title='lux run "Hello, world!"'
 Your input has the word 'hello' in it!
 ```
 
-```none title='rocks run "Hi, world!"'
+```none title='lux run "Hi, world!"'
 Your input does not have the word 'hello' in it!
 ```
 

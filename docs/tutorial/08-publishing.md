@@ -26,7 +26,7 @@ The key we showed above is an example and not a real key.
 ## Adding a Source URL
 
 As we mentioned in the previous chapters, a rockspec is a set of instructions
-on how to build and install a rock. One of the fields in our `rocks.toml` which
+on how to build and install a rock. One of the fields in our `lux.toml` which
 isn't provided by default is the URL source field, which points to the location
 of the rock's source code.
 
@@ -34,9 +34,9 @@ When publishing a rock, we need to ensure that the `source.url` field points to
 such a location, this is usually a GitHub repository. If you haven't already
 made one, this is a good time to create a repository for your project.
 
-Here's our updated `rocks.toml` with the `source.url` field added:
+Here's our updated `lux.toml` with the `source.url` field added:
 
-```toml title="rocks.toml"
+```toml title="lux.toml"
 package = "my-lua-project"
 version = "0.1.0"
 lua = ">=5.1"
@@ -64,9 +64,9 @@ type = "builtin"
 With the API key in hand, we can now publish our rock. Run the following command in your project directory:
 
 ```sh
-ROCKS_API_KEY=your-api-key rocks upload
+ROCKS_API_KEY=your-api-key lux upload
 ```
 
-`rocks` will now package your project and upload it to luarocks!
+`lux` will now package your project and upload it to luarocks!
 Feel free to check out the [luarocks.org](https://luarocks.org) website to see your project listed in the "Recent Modules" section.
 

@@ -11,7 +11,7 @@ code.
 :::info Testing Framework
 In Lua, testing is primarily done using the
 [`busted`](https://github.com/lunarmodules/busted) testing framework.
-`rocks` takes care of installing `busted` for you when running tests!
+`lux` takes care of installing `busted` for you when running tests!
 :::
 
 ## Restructuring Our Project
@@ -81,10 +81,10 @@ end)
 
 ## Running the Tests
 
-We're now ready to run our tests! `rocks test` will run all the tests in your
+We're now ready to run our tests! `lux test` will run all the tests in your
 project. After the automatic installation of `busted` you should see the following output:
 
-```sh title="rocks test"
+```sh title="lux test"
 ●●
 2 successes / 0 failures / 0 errors / 0 pending : 0.001615 seconds
 ```

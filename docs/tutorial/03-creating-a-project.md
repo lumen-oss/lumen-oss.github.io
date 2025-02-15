@@ -4,17 +4,17 @@ title: Creating a Project
 ---
 
 In the next chapters we will learn how to create, manage and publish a Lua project.
-We will cover dependencies, the `rocks.toml` format and more all the way up to API keys!
+We will cover dependencies, the `lux.toml` format and more all the way up to API keys!
 
 To start writing Lua, we must initialize a project where we will store our code.
 We'll store our code in a `my-lua-project/` directory.
 To do so, we can run:
 
 ```bash
-rocks new my-lua-project
+lux new my-lua-project
 ```
 
-We'll now be asked to provide information about our project so `rocks` can generate
+We'll now be asked to provide information about our project so `lux` can generate
 the appropriate skeleton code. Below is the output of the application, as well as
 the values we will provide. For the "Maintainer" field, feel free to provide your
 own name or username!
@@ -47,12 +47,12 @@ Inside of our project, you should see a single file was generated:
 
 ```bash title="tree $(pwd)"
 /home/vhyrro/my-lua-project
-└── rocks.toml
+└── lux.toml
 ```
 
 Let's enter the file. Here's the contents of the project file:
 
-```lua title="rocks.toml"
+```lua title="lux.toml"
 package = "my-lua-project"
 version = "0.1.0"
 lua = ">= 5.1"
@@ -67,7 +67,7 @@ labels = ["learning"]
 type = "builtin"
 ```
 
-The `rocks.toml` file describes instructions on how to build and ship your Lua code.
+The `lux.toml` file describes instructions on how to build and ship your Lua code.
 
 ## Checking our Progress
 
@@ -75,7 +75,7 @@ To check whether our project was made successfully, first make sure you're in th
 Now, you can run a secret command:
 
 ```bash
-rocks debug project
+lux debug project
 ```
 
 This will show information about the project if it was properly created. If everything

@@ -14,7 +14,7 @@ up being complicated if we use github pages.
 
 # General Plans
 
-Make tutorial on how to develop a CLI app using rocks.
+Make tutorial on how to develop a CLI app using lux.
 
 - [x] Introduction
 - [x] Getting started
@@ -27,4 +27,4 @@ Make tutorial on how to develop a CLI app using rocks.
     - Running `luacheck`
 - Publishing to `luarocks.org`
     - Setting up an API key
-    - Running `rocks upload`
+    - Running `lux upload`

@@ -11,7 +11,7 @@ Due to the fact that we have no stable release yet, you must install the project
 through `cargo`:
 
 ```sh
-cargo install rocks --locked
+cargo install lux --locked
 ```
 
 :::important For new cargo users
@@ -38,12 +38,12 @@ Make sure that `~/.cargo/bin/` is part of your shell's `$PATH`!
 
 ## Checking Installation
 
-Ensure that installation was successful by running `rocks help`.
+Ensure that installation was successful by running `lux help`.
 You should see output similar to the following:
 ```
 A fast and efficient Lua package manager
 
-Usage: rocks [OPTIONS] <COMMAND>
+Usage: lux [OPTIONS] <COMMAND>
 
 ...
 ```

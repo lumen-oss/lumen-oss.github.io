@@ -7,7 +7,7 @@ Lua has a very little standard library, so let's download some dependencies to g
 Since we want to develop a CLI, we need a library capable of parsing flags and arguments.
 To do so, we will use [`argparse`](https://luarocks.org/modules/argparse/argparse). We'll install it with the following command:
 ```sh
-rocks add argparse@0.7
+lux add argparse@0.7
 ```
 
 :::note
@@ -24,14 +24,14 @@ with our code. However, just running `lua` will *not* load our dependenices. To 
 `lua` REPL with our dependencies loaded, we need to run the following command:
 
 ```sh
-rocks lua
+lux lua
 ```
 
 This acts as a direct wrapper around the `lua` program.
 Once in the REPL, let's try to require our `argparse` code. Type `require("argparse").version`
 and press enter. Below is the successful output:
 
-```sh title="rocks lua"
+```sh title="lux lua"
 Lua 5.4.7  Copyright (C) 1994-2024 Lua.org, PUC-Rio
 > require("argparse").version
 0.7.1
