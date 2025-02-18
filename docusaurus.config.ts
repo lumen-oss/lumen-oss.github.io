@@ -17,7 +17,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'rocks', // Usually your GitHub org/user name.
+  organizationName: 'nvim-neorocks', // Usually your GitHub org/user name.
   projectName: 'lux', // Usually your repo name.
 
   onBrokenLinks: 'throw',

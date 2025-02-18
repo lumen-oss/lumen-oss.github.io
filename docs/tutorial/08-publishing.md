@@ -64,7 +64,7 @@ type = "builtin"
 With the API key in hand, we can now publish our rock. Run the following command in your project directory:
 
 ```sh
-ROCKS_API_KEY=your-api-key lux upload
+LUX_API_KEY=your-api-key lux upload
 ```
 
 `lux` will now package your project and upload it to luarocks!
