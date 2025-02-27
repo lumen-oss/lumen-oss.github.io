@@ -10,7 +10,7 @@ Welcome to the official `lux` documentation.
 Here you will find all sorts of resources ready to get you
 started on your Lua journey!
 
-## What is Rocks?
+## What is Lux?
 
 `lux` is a package manager for [Lua](https://lua.org). Its purpose is to manage
 Lua projects, dependencies, build scripts and more for you, so you
