@@ -11,7 +11,7 @@ Due to the fact that we have no stable release yet, you must install the project
 through `cargo`:
 
 ```sh
-cargo install lux --locked
+cargo install lux-cli --locked
 ```
 
 :::important For new cargo users
