@@ -38,12 +38,12 @@ Make sure that `~/.cargo/bin/` is part of your shell's `$PATH`!
 
 ## Checking Installation
 
-Ensure that installation was successful by running `lux help`.
+Ensure that installation was successful by running `lx help`.
 You should see output similar to the following:
 ```
 A fast and efficient Lua package manager
 
-Usage: lux [OPTIONS] <COMMAND>
+Usage: lx [OPTIONS] <COMMAND>
 
 ...
 ```

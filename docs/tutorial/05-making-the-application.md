@@ -74,11 +74,11 @@ end
 We've transformed our program to check if the input contains the word "hello".
 Below are some example outputs:
 
-```none title='lux run "Hello, world!"'
+```none title='lx run "Hello, world!"'
 Your input has the word 'hello' in it!
 ```
 
-```none title='lux run "Hi, world!"'
+```none title='lx run "Hi, world!"'
 Your input does not have the word 'hello' in it!
 ```
 

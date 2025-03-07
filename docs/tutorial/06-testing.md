@@ -81,10 +81,10 @@ end)
 
 ## Running the Tests
 
-We're now ready to run our tests! `lux test` will run all the tests in your
+We're now ready to run our tests! `lx test` will run all the tests in your
 project. After the automatic installation of `busted` you should see the following output:
 
-```sh title="lux test"
+```sh title="lx test"
 ●●
 2 successes / 0 failures / 0 errors / 0 pending : 0.001615 seconds
 ```

@@ -14,10 +14,10 @@ Linting is the process of analyzing code for potential errors and stylistic issu
 `lux` comes with `luacheck`, a linter for Lua code, built-in. To run `luacheck` on your project, use the following command:
 
 ```sh
-lux check
+lx check
 ```
 
-<!--TODO: Add output of `lux check` command for our current code and see if there are any issues.-->
+<!--TODO: Add output of `lx check` command for our current code and see if there are any issues.-->
 
 ## Formatting with `stylua`
 
@@ -25,10 +25,10 @@ lux check
 It's highly recommended to use `stylua` to ensure that your code is consisent across the board.
 
 ```sh
-lux fmt
+lx fmt
 ```
 
-`lux fmt` will format all Lua files in your project to the style defined in
+`lx fmt` will format all Lua files in your project to the style defined in
 your
 [`.stylua.toml`](https://github.com/JohnnyMorganz/StyLua?tab=readme-ov-file#options)
 file, defined in the project root. Otherwise, it will use the default style.
@@ -44,8 +44,8 @@ project directory with the following content:
 ```sh
 #!/bin/sh
 
-lux check
-lux fmt
+lx check
+lx fmt
 ```
 
 Make sure to make the file executable:

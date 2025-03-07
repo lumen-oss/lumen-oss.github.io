@@ -11,7 +11,7 @@ We'll store our code in a `my-lua-project/` directory.
 To do so, we can run:
 
 ```bash
-lux new my-lua-project
+lx new my-lua-project
 ```
 
 We'll now be asked to provide information about our project so `lux` can generate
@@ -75,7 +75,7 @@ To check whether our project was made successfully, first make sure you're in th
 Now, you can run a secret command:
 
 ```bash
-lux debug project
+lx debug project
 ```
 
 This will show information about the project if it was properly created. If everything
