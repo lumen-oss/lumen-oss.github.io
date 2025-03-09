@@ -64,6 +64,12 @@ const config: Config = {
           label: 'Tutorial',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Explanations',
+        },
+        {
           href: 'https://github.com/nvim-neorocks/lux',
           label: 'GitHub',
           position: 'right',
@@ -79,6 +85,10 @@ const config: Config = {
             {
               label: 'Tutorial',
               to: '/tutorial/creating-a-project',
+            },
+            {
+              label: 'Explanations',
+              to: '/explanations',
             },
           ],
         },
