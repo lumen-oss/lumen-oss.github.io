@@ -35,7 +35,7 @@ file, defined in the project root. Otherwise, it will use the default style.
 
 ## Git Hooks
 
-We recommend setting up a Git hook to run `lux check` and `lux fmt` before
+We recommend setting up a Git hook to run `lx check` and `lx fmt` before
 each commit to ensure that you never forget to lint and format your code.
 
 To set up a Git hook, create a file called `.git/hooks/pre-commit` in your
@@ -54,4 +54,4 @@ Make sure to make the file executable:
 chmod +x .git/hooks/pre-commit
 ```
 
-Now, every time you commit changes to your project, `lux check` and `lux fmt` will run automatically!
+Now, every time you commit changes to your project, `lx check` and `lx fmt` will run automatically!
