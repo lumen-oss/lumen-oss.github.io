@@ -11,6 +11,6 @@ This section contains explanations for various topics related to `lux` and its a
 ## Table of Contents
 
 - [What is a lua package?](/explanations/lua-packages)
-- [What are lux trees?](/explanations/lux-trees-introduction)
-- [How do lux trees work?](/explanations/lux-trees)
-- [How are rocks loaded?](/explanations/lux-package-loading)
+<!--- [What are lux trees?](/explanations/lux-trees-introduction)-->
+<!--- [How do lux trees work?](/explanations/lux-trees)-->
+<!--- [How are rocks loaded?](/explanations/lux-package-loading)-->

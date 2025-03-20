@@ -70,7 +70,7 @@ In order to build the rock, one must first:
 1. Acquire the rockspec
 2. Read the `dependencies` table and download all dependencies of the rock
 3. Read the rockspec's `source` table and download the rock's source code
-4. Read the `build` table and install the package into a [tree](/explanations/lux-trees)
+<!--4. Read the `build` table and install the package into a [tree](/explanations/lux-trees)-->
 
 :::note Reproducibility
 Notice that the branch and tag are explicitly specified in the `source` field
