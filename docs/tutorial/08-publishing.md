@@ -67,6 +67,5 @@ With the API key in hand, we can now publish our rock. Run the following command
 LUX_API_KEY=your-api-key lx upload
 ```
 
-`lux` will now package your project and upload it to luarocks!
+Lux will now package your project and upload it to luarocks!
 Feel free to check out the [luarocks.org](https://luarocks.org) website to see your project listed in the "Recent Modules" section.
-

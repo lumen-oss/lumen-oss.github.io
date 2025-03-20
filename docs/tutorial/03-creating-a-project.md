@@ -3,18 +3,19 @@ id: creating-a-project
 title: Creating a Project
 ---
 
-In the next chapters we will learn how to create, manage and publish a Lua project.
+In the next chapters we will learn how to create, manage and publish a small Lua CLI
+that checks whether the entered words contain "hello" or not.
 We will cover dependencies, the `lux.toml` format and more all the way up to API keys!
 
 To start writing Lua, we must initialize a project where we will store our code.
-We'll store our code in a `my-lua-project/` directory.
-To do so, we can run:
+We'll do this in a `my-lua-project/` directory.
+To create a project, we can run:
 
 ```bash
 lx new my-lua-project
 ```
 
-We'll now be asked to provide information about our project so `lux` can generate
+We'll now be asked to provide information about our project so Lux can generate
 the appropriate skeleton code. Below is the output of the application, as well as
 the values we will provide. For the "Maintainer" field, feel free to provide your
 own name or username!
@@ -41,16 +42,17 @@ can be safely ignored.
 ## Exploring Our Project
 
 You'll see that our `my-lua-project/` directory was created. Let's enter the directory
-and start work on our project!
+and get to work!
 
-Inside of our project, you should see a single file was generated:
+Inside of our project, you should see that a single file was generated:
 
 ```bash title="tree $(pwd)"
-/home/vhyrro/my-lua-project
+/home/your-username/my-lua-project
 └── lux.toml
 ```
 
-Let's enter the file. Here's the contents of the project file:
+The `lux.toml` file describes instructions on how to build and ship your Lua code.
+Let's enter the file. You should see contents similar to the following:
 
 ```lua title="lux.toml"
 package = "my-lua-project"
@@ -67,24 +69,22 @@ labels = ["learning"]
 type = "builtin"
 ```
 
-The `lux.toml` file describes instructions on how to build and ship your Lua code.
-
 ## Checking our Progress
 
-To check whether our project was made successfully, first make sure you're in the `my-lua-project` directory.
-Now, you can run a secret command:
+To check whether our project was made successfully, first make sure you're in
+the `my-lua-project/` directory; afterwards, you can run a secret command:
 
 ```bash
 lx debug project
 ```
 
-This will show information about the project if it was properly created. If everything
-went smoothly, you should see the following output:
+This will show information about the project only if it was properly created.
+You should see the following output:
 
 ```
-Project Name: my-lua-project
-Project Version: 0.1.0-1
-Project location: /home/vhyrro/my-lua-project
+Project name: my-lua-project
+Project version: 0.1.0-1
+Project location: /home/your-username/my-lua-project
 ```
 
-We're almost ready to write some meaningful code in the next chapter!
+Congratulations! We're now ready to start adding some dependencies in the next chapter.

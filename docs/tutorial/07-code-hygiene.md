@@ -3,15 +3,16 @@ id: code-hygiene
 title: Code Hygiene
 ---
 
-Code hygiene is the practice of writing code that is clean, readable, and
-maintainable. It's essential to write code that is easy to understand and
-modify, especially when working in a team. In this chapter, we'll learn how
-`lux` can help us maintain code hygiene in our Lua projects.
+<!--TODO: extract this whole section into a set of guides-->
+
+Code hygiene is the practice of writing code that is readable and maintainable.
+In this chapter, we'll learn how Lux can help us maintain code hygiene in our
+Lua projects.
 
 ## Linting with `luacheck`
 
-Linting is the process of analyzing code for potential errors and stylistic issues (too long lines, unused variables, etc.).
-`lux` comes with `luacheck`, a linter for Lua code, built-in. To run `luacheck` on your project, use the following command:
+Linting is the process of analyzing code for potential errors and stylistic issues (lines too long, unused variables, etc.).
+Lux comes with `luacheck`, a linter for Lua code, built-in. To run `luacheck` on your project, use the following command:
 
 ```sh
 lx check
@@ -22,14 +23,13 @@ lx check
 ## Formatting with `stylua`
 
 `stylua` is a Lua code formatter that can automatically format your Lua code to a consistent style.
-It's highly recommended to use `stylua` to ensure that your code is consisent across the board.
+Lux vendors `stylua` and provides a command to format your Lua files:
 
 ```sh
 lx fmt
 ```
 
-`lx fmt` will format all Lua files in your project to the style defined in
-your
+Doing so will format according to your
 [`.stylua.toml`](https://github.com/JohnnyMorganz/StyLua?tab=readme-ov-file#options)
 file, defined in the project root. Otherwise, it will use the default style.
 

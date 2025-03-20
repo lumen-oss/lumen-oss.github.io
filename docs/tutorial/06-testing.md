@@ -3,15 +3,14 @@ id: testing
 title: Testing Our Code
 ---
 
-Testing is an essential part of software development. It allows us to ensure
-that our code behaves as expected and that we don't introduce regressions when
-making changes. In this chapter, we'll learn how to write tests for our Lua
-code.
+Testing allows us to ensure that our code behaves as expected and that we don't
+introduce regressions when making changes. In this chapter, we'll learn how to
+write tests for our Lua code.
 
 :::info Testing Framework
 In Lua, testing is primarily done using the
 [`busted`](https://github.com/lunarmodules/busted) testing framework.
-`lux` takes care of installing `busted` for you when running tests!
+Lux takes care of installing `busted` for you when running tests!
 :::
 
 ## Restructuring Our Project

@@ -3,13 +3,13 @@ id: making-the-application
 title: Making the CLI Application
 ---
 
-`lux` expects to find code under either a `src/` or `lua/` directory.
+Lux expects to find code under either a `src/` or `lua/` directory.
 For this series, we'll store our code under `src/`.
 
 Inside the project directory (where your `lux.toml` resides) create a `src/main.lua` file.
-This acts as the main file `lux` will execute.
+This acts as the main file Lux will execute.
 
-Here's the output of `tree .` after creating the file:
+Here's what your project directory should look like after creating the file:
 ```sh title="tree ."
 .
 ├── lux.toml
@@ -21,7 +21,7 @@ Here's the output of `tree .` after creating the file:
 
 ## Ensuring the Project Runs
 
-First, let's put some code in our `main.lua` file:
+Let us add the following boilerplate code to `src/main.lua`:
 
 ```lua title="src/main.lua"
 local argparse = require("argparse")
@@ -46,7 +46,8 @@ You should see `Testing our code!` printed right back at you in the console!
 
 ## Expanding the Code
 
-In preparation for the next chapter, let's create some extra logic for our program:
+Now we'll finalize what we sought to achieve in this series - checking whether the input contains the word "hello".
+Let's expand our code to do just that:
 
 ```lua title="src/main.lua"
 --- Checks whether input has the word "hello"
@@ -71,8 +72,7 @@ else
 end
 ```
 
-We've transformed our program to check if the input contains the word "hello".
-Below are some example outputs:
+Below are some example outputs, feel free to play around with the input:
 
 ```none title='lx run "Hello, world!"'
 Your input has the word 'hello' in it!
@@ -82,4 +82,5 @@ Your input has the word 'hello' in it!
 Your input does not have the word 'hello' in it!
 ```
 
+Well done! Our code is done and dusted. However, this isn't all there is to writing an application.
 We're now ready to move on to the next stage of our program's lifecycle - testing.
