@@ -19,7 +19,7 @@ This may take a while depending on your internet connection!
 
 ## Testing Our Changes
 
-To check whether `argparse` is loaded we can enter a Lua REPL and play around
+To check whether `argparse` is loaded, we can enter a Lua REPL and play around
 with our code. However, just running `lua` will not work. To enter a
 `lua` REPL with our dependencies loaded, we need to run the following command instead:
 

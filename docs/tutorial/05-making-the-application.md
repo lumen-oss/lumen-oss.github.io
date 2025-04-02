@@ -3,25 +3,10 @@ id: making-the-application
 title: Making the CLI Application
 ---
 
-Lux expects to find code under either a `src/` or `lua/` directory.
-For this series, we'll store our code under `src/`.
+## Creating the Skeleton
 
-Inside the project directory (where your `lux.toml` resides) create a `src/main.lua` file.
-This acts as the main file Lux will execute.
-
-Here's what your project directory should look like after creating the file:
-```sh title="tree ."
-.
-├── lux.toml
-└── src
-    └── main.lua
-
-2 directories, 2 files
-```
-
-## Ensuring the Project Runs
-
-Let us add the following boilerplate code to `src/main.lua`:
+Let's add some simple boilerplate using `argparse`. This program will print back anything
+we pass as arguments back into the console:
 
 ```lua title="src/main.lua"
 local argparse = require("argparse")
@@ -36,10 +21,10 @@ local args = parser:parse()
 print(args.input)
 ```
 
-We're now ready to see if our code works! Run the following command to see your code in action:
+Run the following command to see your code in action:
 
 ```sh
-lux run "Testing our code!"
+lx run "Testing our code!"
 ```
 
 You should see `Testing our code!` printed right back at you in the console!

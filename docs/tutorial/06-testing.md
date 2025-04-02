@@ -52,6 +52,8 @@ else
 end
 ```
 
+Noticed how we replaced the function with a `require` call to the new file.
+
 ## Writing our First Test
 
 Now that we have our code structured, let's write our first test. Tests are usually stored in
@@ -81,7 +83,7 @@ end)
 ## Running the Tests
 
 We're now ready to run our tests! `lx test` will run all the tests in your
-project. After the automatic installation of `busted` you should see the following output:
+project. After taking a moment to install `busted`, Lux should show you the following output:
 
 ```sh title="lx test"
 ●●
