@@ -3,6 +3,7 @@ slug: /guides
 id: guides
 title: Guides
 sidebar_label: Guides
+sidebar_position: 2
 ---
 
 Want to get better at using Lux? Look no further than this set of guides.
