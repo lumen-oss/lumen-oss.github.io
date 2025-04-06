@@ -8,7 +8,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 Due to the fact that we have no stable release yet, you must install the project
-through `cargo`:
+through `cargo`. We recommend installing through `cargo binstall` for fastest install times:
+
+```sh
+cargo binstall lux-cli --locked
+```
+
+If you don't have `cargo binstall` installed, you can install Lux normally with:
 
 ```sh
 cargo install lux-cli --locked
