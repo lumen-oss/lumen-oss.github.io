@@ -25,7 +25,7 @@ In the directory containing your code.
 ## `extra.rockspec`
 
 Lux expects a rockspec to exist in an `extra.rockspec` file. Create that file in your project's root and paste the content
-of your rockspec there:
+of your rockspec there. In our case, this will be a simplified version of `say`'s rockspec:
 
 ```lua title="extra.rockspec"
 package = "say"
@@ -43,7 +43,7 @@ build = {
 }
 ```
 
-This is all that's required - Lux will now pull information from the rockspec file whenever it needs.
+That's it! Lux will now treat the rockspec file as a first-class citizen.
 
 ## Important Behaviour
 
@@ -57,8 +57,8 @@ Lux will completely ignore all content in the TOML and use only the `source` tab
 ## Cleaning up the Rockspec
 
 For the reasons above, you'll want to clean up the rockspec and only keep the data you really need (the more
-data coming from the TOML the better). In the case of `extra.rockspec`, Lux allows you to omit any fields, including ones
-that would generally be considered required fields.
+data coming from the TOML the better). In the `extra.rockspec`, you can omit as many fields as you like, including ones
+that would generally be considered required.
 
 Following the previous section, here's an example of a cleaned up rockspec:
 
