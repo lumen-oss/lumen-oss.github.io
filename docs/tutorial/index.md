@@ -32,3 +32,9 @@ The site is divided into sections:
 - To learn `lux` by doing, skip over to the [Creating a Project](/tutorial/creating-a-project) section.
 <!--- To learn small, specific tasks, head over to the [Guides](/guides).-->
 <!--- For an API reference visit the [Reference](/reference).-->
+
+## License
+
+- Lux is licensed under [MIT](https://github.com/nvim-neorocks/lux/blob/master/LICENSE).
+- The Lux logo © 2025 by Kai Jakobi is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
