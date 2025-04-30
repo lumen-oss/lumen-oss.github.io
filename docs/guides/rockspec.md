@@ -3,7 +3,7 @@ id: rockspec
 title: How to use Lux with a rockspec file
 ---
 
-In this guide, we'll learn how to use rockspec files with Lux.
+In this guide, we'll learn how to use Lua rockspec files with Lux.
 
 :::note
 Using TOML is highly recommended due to ease-of-use. We recommend only following this guide
@@ -44,6 +44,10 @@ build = {
 ```
 
 That's it! Lux will now treat the rockspec file as a first-class citizen.
+
+:::info
+See also: [The luarocks documentation on the rockspec format](https://github.com/luarocks/luarocks/blob/main/docs/rockspec_format.md)
+:::
 
 ## Important Behaviour
 
