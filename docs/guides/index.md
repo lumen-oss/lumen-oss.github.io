@@ -11,6 +11,7 @@ Want to get better at using Lux? Look no further than this set of guides.
 ## Maintenance
 - [How to publish a Lua project](/guides/publishing)
 - [How to publish a new release of your project](/guides/project-updating)
+- [How to declare a lux.toml file](/guides/lux-toml)
 - [How to use Lux with a rockspec file](/guides/rockspec)
 
 ## Code Hygiene
