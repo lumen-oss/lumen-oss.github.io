@@ -7,14 +7,24 @@ In this guide, we'll learn how to set up a testing suite for a Lua project.
 
 ## Creating Spec Files
 
-By default, Lux uses [`busted`](https://github.com/lunarmodules/busted) as its testing suite.
-Tests are stored in a `spec/` directory in the root of your project, and only files
+By default, will try to auto-detect your test suite.
+If there is a `.busted` file in your project root,
+Lux will use[`busted`](https://github.com/lunarmodules/busted) as its test backend.
+Otherwise, you must specify the test backend in your `lux.toml`:
+
+```toml title="test specification"
+[test]
+type = "busted"
+```
+
+With busted, tests are stored in a `spec/` directory in the root of your project, and only files
 ending in `_spec.lua` are considered tests.
 
 The type of tests you will make will vary greatly depending on the type of project at hand.
 Nevertheless, refrain from making trivial tests - they bring little value to a codebase.
 
 Below is an example of a test:
+
 ```lua title="spec/request_parse_spec.lua"
 local request = require("mylib.request")
 local json = require("mylib.json")
@@ -76,3 +86,9 @@ return {
 ```
 
 For full reference, see [the `busted` website](https://lunarmodules.github.io/busted).
+
+## Alternate test backends
+
+You don't have to use `busted` as a test backend.
+See the test section in [How to declare a lux.toml file](/guides/lux-toml)
+for alternate test backends.

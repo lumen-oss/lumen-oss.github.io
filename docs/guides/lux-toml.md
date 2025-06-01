@@ -442,5 +442,46 @@ If you want your rock to be compatible with luarocks, you should test an install
 before publishing.
 :::
 
-<!-- ## Test specification -->
-<!-- TODO -->
+## Test specification
+
+Lux supports the following test backends, specified by the `[test]` table in the lux.toml:
+
+### [`busted`](https://lunarmodules.github.io/busted/)
+
+Example:
+
+```toml
+[test]
+type = "busted"
+flags = [ ] # Optional CLI flags to pass to busted
+```
+
+:::note
+`lx test` will default to using `busted`
+if there is a `.busted` file in the project root
+and no test backend is specified.
+:::
+
+### `command`
+
+Name/file name of a shell command that will run the test suite.
+Example:
+
+```toml
+[test]
+type = "command"
+command = "make"
+flags = [ "test" ]
+```
+
+### `script`
+
+Relative path to a Lua script that will run the test suite.
+Example:
+
+```toml
+[test]
+type = "script"
+script = "tests.lua" # Expects a tests.lua file in the project root
+flags = [ ] # Optional arguments passed to the test script
+```
