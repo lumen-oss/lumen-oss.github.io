@@ -462,6 +462,28 @@ if there is a `.busted` file in the project root
 and no test backend is specified.
 :::
 
+### `busted-nlua`
+
+Uses [nlua](https://github.com/mfussenegger/nlua) to run [busted](https://lunarmodules.github.io/busted/)
+tests with [Neovim](https://neovim.io/) as the Lua interpreter.
+Useful for testing Neovim plugins.
+
+:::note
+- Currently, this test backend is broken on macOS and Windows.
+- `lx test` will default to using `busted-nlua` if no test backend is specified and:
+    - There is a `.busted` file in the project root.
+    - Or `busted` and `nlua` are `test_dependencies`.
+:::
+
+
+Example:
+
+```toml
+[test]
+type = "busted-nlua"
+flags = [ ] # Optional CLI flags to pass to busted
+```
+
 ### `command`
 
 Name/file name of a shell command that will run the test suite.
