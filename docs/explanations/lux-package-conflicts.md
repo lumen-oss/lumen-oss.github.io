@@ -12,21 +12,20 @@ First, let's quickly break down what problems we're trying to solve as a package
 a rock (the name for a package in Lua land), unpack it, put the Lua files in the correct place and ensure all dependencies are installed. As will be evident soon,
 managing these dependencies is not an easy feat.
 
-In Lux, packages are installed in something called a rock tree. This tree contains a lockfile, which describes which packages
-are installed and how they all relate with one another. The tree also contains a `lux/` directory - it's here that all Lua files are unpacked so that they can be used in
-your scripts. There are three types of rock trees - those that are created for each Lua project (which hold local packages like
+In Lux, packages are installed in something called a rock tree. This tree contains a lockfile, which describes which packages (rocks)
+are installed and how they all relate with one another. There are three types of rock trees - those that are created for each Lua project (which hold local packages like
 dependencies for a given project), those that are installed for the current user (for things like local binaries or helper packages)
 and those that are system-wide.
 
 A rock tree is structured as follows:
-- `/lux/<lua-version>` - contains lux for a given Lua version
-- `/lux/<lua-version>/<rock>/etc` - documentation and supplementary files for the rock
-- `/lux/<lua-version>/<rock>/lib` - shared libraries (.so files)
-- `/lux/<lua-version>/<rock>/src` - actual code of the rock
-- `/bin` - binary files produced by various packages
+- `tree/<lua-version>` - contains rocks for a given Lua version
+- `tree/<lua-version>/<rock>/etc` - documentation and supplementary files for the rock
+- `tree/<lua-version>/<rock>/lib` - shared libraries (.so files)
+- `tree/<lua-version>/<rock>/src` - actual code of the rock
+- `tree/<lua-version>/bin` - binary files produced by various packages
 
 `<lua-version>` can be any of `5.1`, `5.2`, `5.3`, `5.4` - simple! Here's a question that might throw you for a loop - what
-should `<rock>` be? Should it just be the name and version of the rock: `/lux/5.1/my-package@1.0.0/...`? As we're
+should `<rock>` be? Should it just be the name and version of the rock: `tree/5.1/my-package@1.0.0/...`? As we're
 about to find out, it's much, *much* more complicated.
 
 Let's consider the following case: `rock1` is already installed in the user-wide rock tree. `rock1` relies on a hypothetical rock called
