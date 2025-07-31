@@ -35,7 +35,7 @@ Linting is the process of analyzing code for stylistic and logic error (lines to
 Lux comes with `luacheck`, a linter for Lua code, built-in. To run `luacheck` on your project, use the following command:
 
 ```sh
-lx check
+lx lint
 ```
 
 We recommend running this automatically through a git hook, or running it manually at the end of every significant
@@ -43,7 +43,7 @@ addition/refactor of your code.
 
 ## Git Hooks
 
-We recommend setting up a Git hook to run `lx check` and `lx fmt` before
+We recommend setting up a Git hook to run `lx lint` and `lx fmt` before
 each commit to ensure that you never forget to lint and format your code.
 
 To set up a Git hook, create a file called `.git/hooks/pre-commit` in your
@@ -52,7 +52,7 @@ project directory with the following content:
 ```sh
 #!/bin/sh
 
-lx check
+lx lint
 lx fmt
 ```
 

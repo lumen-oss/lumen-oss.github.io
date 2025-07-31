@@ -6,16 +6,16 @@ title: Code Hygiene
 Code hygiene is the practice of writing code that is readable and maintainable.
 In this chapter, we'll let tools automatically clean up our code for us.
 
-## Linting with `lx check`
+## Linting with `lx lint`
 
 Linting is the process of analyzing code for potential errors and stylistic issues (lines too long, unused variables, etc.).
 To lint the entire project, we can run:
 
 ```sh
-lx check
+lx lint
 ```
 
-<!--TODO: show output of lx check and fix the errors that exist there-->
+<!--TODO: show output of lx lint and fix the errors that exist there-->
 
 ## Formatting with `lx fmt`
 
