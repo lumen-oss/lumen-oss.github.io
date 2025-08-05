@@ -29,6 +29,21 @@ space_after_function_names = "Never"
 enabled = false
 ```
 
+## Type checks with LuaCATS annotations
+
+Lua is incredibly responsive when used for configuration or scripting, giving immediate feedback.
+But in the context of a project that needs to be maintained long-term, its dynamic typing casts
+shadows of unpredictability, making Lua projects susceptible to unexpected bugs at the wrong time.
+
+To help mitigate this, Lux provides a `lx check` command, which uses [emmylua_check](https://github.com/EmmyLuaLs/emmylua-analyzer-rust)
+to statically type-check your codebase based on [LuaCATS annotations](https://github.com/EmmyLuaLs/emmylua-analyzer-rust).
+
+The command will:
+
+1. Build your project and its dependencies if not done already.
+2. Generate workspace library entries for a [`.luarc.json` file](https://github.com/LuaLS/lua-language-server/wiki/Configuration-File).
+3. Run the static checker.
+
 ## Linting with `luacheck`
 
 Linting is the process of analyzing code for stylistic and logic error (lines too long, unused variables, etc.).
@@ -38,12 +53,12 @@ Lux comes with `luacheck`, a linter for Lua code, built-in. To run `luacheck` on
 lx lint
 ```
 
-We recommend running this automatically through a git hook, or running it manually at the end of every significant
-addition/refactor of your code.
+We recommend running checks and lints automatically through a git hook,
+or running them manually at the end of every significant addition/refactor of your code.
 
 ## Git Hooks
 
-We recommend setting up a Git hook to run `lx lint` and `lx fmt` before
+We recommend setting up a Git hook to run `lx check`, `lx lint` and `lx fmt` before
 each commit to ensure that you never forget to lint and format your code.
 
 To set up a Git hook, create a file called `.git/hooks/pre-commit` in your
@@ -52,6 +67,7 @@ project directory with the following content:
 ```sh
 #!/bin/sh
 
+lx check
 lx lint
 lx fmt
 ```
