@@ -43,7 +43,7 @@ If you system does not have FUSE, you can [extract the AppImage](https://github.
 ./squashfs-root/usr/bin/lx
 ```
 
-#### Debian
+#### Debian-based distributions
 
 Download and install the `.deb` package for your architecture:
 
@@ -51,8 +51,7 @@ Download and install the `.deb` package for your architecture:
 
 #### Arch Linux
 
-Download the `PKGBUILD` and `lx_<version>_86_64.tar.gz` and install using
-`makepkg` and `pacman`.
+Download the `PKGBUILD` and `lx_<version>_86_64.tar.gz` and install using [`makepkg`](https://wiki.archlinux.org/title/Makepkg).
 
 ### macOS
 
@@ -74,6 +73,7 @@ so you may have to configure Gatekeeper to allow you to use it.
 - `lx_<version>_x64-setup.exe`
 - or `lx_<version>_x64_en-US.msi`
 
+:::note
 As a young FOSS project, we do not sign the Windows package with a CA,
 so you will be shown a "Windows protected your PC" warning when running the installer.
 :::
