@@ -21,16 +21,68 @@ Lux includes the following packages and libraries:
 
 - `lux-lib`: The Lux library for Rust. A dependency of `lux-cli` and `lux-lua`.
 
+## Binary distributions
+
+We provide pre-built binary distributions on our GitHub repository's [releases page](https://github.com/nvim-neorocks/lux/releases/latest).
+These come bundled with shell completions, man pages and `lux-lua` for each supported Lua version.
+
+### Linux
+
+#### AppImage
+
+1. Download the AppImage for your architecture:
+
+- `lx_<version>_<arch>.AppImage`
+
+2. Run `chmod u+x lx_<version>_<arch>.AppImage` to make it executable.
+
+If you system does not have FUSE, you can [extract the AppImage](https://github.com/AppImage/AppImageKit/wiki/FUSE#type-2-appimage):
+
+```
+./lx_<version>_<arch>.AppImage --appimage-extract
+./squashfs-root/usr/bin/lx
+```
+
+#### Debian
+
+Download and install the `.deb` package for your architecture:
+
+- `lx_<version>_<arch>.deb`
+
+#### Arch Linux
+
+Download the `PKGBUILD` and `lx_<version>_86_64.tar.gz` and install using
+`makepkg` and `pacman`.
+
+### macOS
+
+1. Download the `lux-cli_<version>_<arch>.dmg` archive for your architecture.
+2. Extract the `.app` bundle to your `Applications`.
+3. Make sure the path containing the `lx` binary (`/Applications/lux-cli.app/Contents/MacOS`)
+   is on your `PATH`.
+   Or, create a `zsh` alias to the bundled `lx` binary.
+
+:::note
+As a young FOSS project, we do not notarize the macOS package,
+so you may have to configure Gatekeeper to allow you to use it.
+:::
+
+### Windows
+
+1. Download and run the installer:
+
+- `lx_<version>_x64-setup.exe`
+- or `lx_<version>_x64_en-US.msi`
+
+As a young FOSS project, we do not sign the Windows package with a CA,
+so you will be shown a "Windows protected your PC" warning when running the installer.
+:::
+
+2. Add the install directory to your `PATH`.
+
 ## Installing Lux With a Distribution's Package Manager
 
-### Arch User Repo (Arch Linux)
-
-[![AUR package](https://repology.org/badge/version-for-repo/aur/lux-cli.svg)](https://aur.archlinux.org/packages/lux-cli)
-
-lux-cli [is available in the AUR](https://aur.archlinux.org/packages/lux-cli).
-You can install it with your favourite AUR helper.
-It comes bundled with the `lux-lua` library, which Lux uses to resolve potentially
-conflicting dependencies at runtime.
+[![Packaging status](https://repology.org/badge/vertical-allrepos/lux-cli.svg)](https://repology.org/project/lux-cli/versions)
 
 ### Nix and NixOS
 
@@ -44,6 +96,12 @@ so that it can find `lux-lua` and Lua.
 
 If you would like to use the latest release, our [source repository](https://github.com/nvim-neorocks/lux)
 also provides a Nix flake.
+
+### Arch Linux (Arch User Repository)
+
+For the best experience, we recommend you install the [`lux-cli-bin`](https://github.com/nvim-neorocks/lux/releases/download/v0.15.0/lx_0.15.0_x86_64.tar.gz)
+package from the AUR.
+It comes bundled with shell completions, man pages and `lux-lua` for each Lua version.
 
 ## Installing The Latest Release Using Cargo
 
