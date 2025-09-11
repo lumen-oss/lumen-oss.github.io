@@ -66,8 +66,8 @@ A longer description of the package
 that often spans multiple lines.
 """
 license = "GPLv2" # SPDX license used by the package
-homepage = "https://nvim-neorocks.github.io"
-issues_url = "https://github.com/nvim-neorocks/lux/issues"
+homepage = "https://lumen-oss.github.io"
+issues_url = "https://github.com/lumen-oss/lux/issues"
 maintainer = "neorocks org"
 labels = [ "neovim", "tls", "https" ]
 ```

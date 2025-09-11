@@ -35,6 +35,6 @@ The site is divided into sections:
 
 ## License
 
-- Lux is licensed under [LGPLv3](https://github.com/nvim-neorocks/lux/blob/master/LICENSE).
+- Lux is licensed under [LGPLv3](https://github.com/lumen-oss/lux/blob/master/LICENSE).
 - The Lux logo © 2025 by Kai Jakobi is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
