@@ -23,7 +23,7 @@ Lux includes the following packages and libraries:
 
 ## Binary distributions
 
-We provide pre-built binary distributions on our GitHub repository's [releases page](https://github.com/nvim-neorocks/lux/releases/latest).
+We provide pre-built binary distributions on our GitHub repository's [releases page](https://github.com/lumen-oss/lux/releases/latest).
 These come bundled with shell completions, man pages and `lux-lua` for each supported Lua version.
 
 ### Linux
@@ -94,12 +94,12 @@ and [`lux-lua` for various Lua versions](https://search.nixos.org/packages?chann
 You may also need to configure [`pkg-config`](https://search.nixos.org/packages?channel=unstable&show=pkg-config&from=0&size=50&sort=relevance&type=packages&query=pkg-config)
 so that it can find `lux-lua` and Lua.
 
-If you would like to use the latest release, our [source repository](https://github.com/nvim-neorocks/lux)
+If you would like to use the latest release, our [source repository](https://github.com/lumen-oss/lux)
 also provides a Nix flake.
 
 ### Arch Linux (Arch User Repository)
 
-For the best experience, we recommend you install the [`lux-cli-bin`](https://github.com/nvim-neorocks/lux/releases/download/v0.15.0/lx_0.15.0_x86_64.tar.gz)
+For the best experience, we recommend you install the [`lux-cli-bin`](https://github.com/lumen-oss/lux/releases/download/v0.15.0/lx_0.15.0_x86_64.tar.gz)
 package from the AUR.
 It comes bundled with shell completions, man pages and `lux-lua` for each Lua version.
 
