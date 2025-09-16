@@ -18,8 +18,14 @@ jobs:
           node-version: 18
           cache: yarn
 
+      - uses: oven-sh/setup-bun@v2
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      - name: Update browserslist DB
+        run: npx update-browserslist-db@latest
+
       - name: Build website
         run: yarn build
 
