@@ -65,13 +65,13 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'guidesSidebar',
           position: 'left',
           label: 'Guides',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'explanationsSidebar',
           position: 'left',
           label: 'Explanations',
         },
