@@ -5,7 +5,7 @@ title: Automating tests and releases
 
 Continuous integration and deployment (CI/CD) allows us to automatically run tests against external
 contributions and upload our package whenever we publish a release.
-In this chapter, we'll learn how to set up the [Lux GitHub Action](TODO).
+In this chapter, we'll learn how to set up the [Lux GitHub Action](https://github.com/marketplace/actions/luxaction).
 
 :::note
 We plan on creating integrations for other CI/CD platforms, too.
