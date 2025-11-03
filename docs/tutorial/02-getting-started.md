@@ -80,6 +80,11 @@ so you will be shown a "Windows protected your PC" warning when running the inst
 
 2. Add the install directory to your `PATH`.
 
+:::important
+Make sure to [enable a x64 hosted MSVC toolset](https://learn.microsoft.com/en-us/cpp/build/how-to-enable-a-64-bit-visual-cpp-toolset-on-the-command-line?view=msvc-170)
+when using Lux on the command line.
+:::
+
 ## Installing Lux With a Distribution's Package Manager
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/lux-cli.svg)](https://repology.org/project/lux-cli/versions)
