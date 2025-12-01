@@ -104,7 +104,7 @@ also provides a Nix flake.
 
 ### Arch Linux (Arch User Repository)
 
-For the best experience, we recommend you install the [`lux-cli-bin`](https://github.com/lumen-oss/lux/releases/download/v0.15.0/lx_0.15.0_x86_64.tar.gz)
+For the best experience, we recommend you install the [`lux-cli-bin`](https://aur.archlinux.org/packages/lux-cli-bin)
 package from the AUR.
 It comes bundled with shell completions, man pages and `lux-lua` for each Lua version.
 
