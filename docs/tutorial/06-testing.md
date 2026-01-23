@@ -80,6 +80,17 @@ describe("has_hello", function()
 end)
 ```
 
+## Configuring the project to use `busted`
+
+Before we run the tests, we need to tell Lux that we want to use `busted`
+as the test runner.
+To do this, let's edit the `lux.toml` and add the following:
+
+```toml title="test specification"
+[test]
+type = "busted"
+```
+
 ## Running the Tests
 
 We're now ready to run our tests! `lx test` will run all the tests in your
