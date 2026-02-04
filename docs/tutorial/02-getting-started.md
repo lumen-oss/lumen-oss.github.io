@@ -21,6 +21,39 @@ Lux includes the following packages and libraries:
 
 - `lux-lib`: The Lux library for Rust. A dependency of `lux-cli` and `lux-lua`.
 
+## Installing Lux With a Distribution's Package Manager
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/lux-cli.svg)](https://repology.org/project/lux-cli/versions)
+
+### Nix and NixOS
+
+[![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/lux-cli.svg)](https://search.nixos.org/packages?channel=unstable&show=lux-cli&from=0&size=50&sort=relevance&type=packages&query=lux-cli)
+
+If you are using [Nix or NixOS](https://nixos.org/),
+you can install [`lux-cli`](https://search.nixos.org/packages?channel=unstable&show=lux-cli&from=0&size=50&sort=relevance&type=packages&query=lux-cli)
+and [`lux-lua` for various Lua versions](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=lux-lua).
+You may also need to configure [`pkg-config`](https://search.nixos.org/packages?channel=unstable&show=pkg-config&from=0&size=50&sort=relevance&type=packages&query=pkg-config)
+so that it can find `lux-lua` and Lua.
+
+If you would like to use the latest release, our [source repository](https://github.com/lumen-oss/lux)
+also provides a Nix flake.
+
+### Arch Linux
+
+For the best experience, we recommend you install the
+[`lux-cli`](https://archlinux.org/packages/extra/x86_64/lux-cli/) package:
+
+```sh
+pacman -S lux-cli
+```
+
+It comes bundled with shell completions, man pages and `lux-lua` for the default Lua version.
+If you want to use `lux-lua` for a specific Lua version, e.g. Lua 5.1:
+
+```sh
+pacman -S lua51-lux
+```
+
 ## Binary distributions
 
 We provide pre-built binary distributions on our GitHub repository's [releases page](https://github.com/lumen-oss/lux/releases/latest).
@@ -84,29 +117,6 @@ so you will be shown a "Windows protected your PC" warning when running the inst
 Make sure to [enable a x64 hosted MSVC toolset](https://learn.microsoft.com/en-us/cpp/build/how-to-enable-a-64-bit-visual-cpp-toolset-on-the-command-line?view=msvc-170)
 when using Lux on the command line.
 :::
-
-## Installing Lux With a Distribution's Package Manager
-
-[![Packaging status](https://repology.org/badge/vertical-allrepos/lux-cli.svg)](https://repology.org/project/lux-cli/versions)
-
-### Nix and NixOS
-
-[![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/lux-cli.svg)](https://search.nixos.org/packages?channel=unstable&show=lux-cli&from=0&size=50&sort=relevance&type=packages&query=lux-cli)
-
-If you are using [Nix or NixOS](https://nixos.org/),
-you can install [`lux-cli`](https://search.nixos.org/packages?channel=unstable&show=lux-cli&from=0&size=50&sort=relevance&type=packages&query=lux-cli)
-and [`lux-lua` for various Lua versions](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=lux-lua).
-You may also need to configure [`pkg-config`](https://search.nixos.org/packages?channel=unstable&show=pkg-config&from=0&size=50&sort=relevance&type=packages&query=pkg-config)
-so that it can find `lux-lua` and Lua.
-
-If you would like to use the latest release, our [source repository](https://github.com/lumen-oss/lux)
-also provides a Nix flake.
-
-### Arch Linux (Arch User Repository)
-
-For the best experience, we recommend you install the [`lux-cli-bin`](https://aur.archlinux.org/packages/lux-cli-bin)
-package from the AUR.
-It comes bundled with shell completions, man pages and `lux-lua` for each Lua version.
 
 ## Installing The Latest Release Using Cargo
 
