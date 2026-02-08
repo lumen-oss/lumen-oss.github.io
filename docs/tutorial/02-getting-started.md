@@ -23,7 +23,7 @@ Lux includes the following packages and libraries:
 
 ## Installing Lux With a Distribution's Package Manager
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/lux-cli.svg)](https://repology.org/project/lux-cli/versions)
+[![Packaging status](https://repology.org/badge/vertical-allrepos/lux-lua-package-manager.svg)](https://repology.org/project/lux-lua-package-manager/versions)
 
 ### Nix and NixOS
 
