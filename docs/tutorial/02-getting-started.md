@@ -27,8 +27,6 @@ Lux includes the following packages and libraries:
 
 ### Nix and NixOS
 
-[![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/lux-cli.svg)](https://search.nixos.org/packages?channel=unstable&show=lux-cli&from=0&size=50&sort=relevance&type=packages&query=lux-cli)
-
 If you are using [Nix or NixOS](https://nixos.org/),
 you can install [`lux-cli`](https://search.nixos.org/packages?channel=unstable&show=lux-cli&from=0&size=50&sort=relevance&type=packages&query=lux-cli)
 and [`lux-lua` for various Lua versions](https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=lux-lua).
