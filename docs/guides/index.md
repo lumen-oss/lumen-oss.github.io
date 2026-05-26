@@ -13,6 +13,7 @@ Want to get better at using Lux? Look no further than this set of guides.
 - [How to publish a new release of your project](/guides/project-updating)
 - [How to declare a lux.toml file](/guides/lux-toml)
 - [How to use Lux with a rockspec file](/guides/rockspec)
+- [How to declare a workspace with multiple projects](/guides/multi-project-workspaces)
 
 ## Code Hygiene
 - [How to test a Lua project](/guides/testing)

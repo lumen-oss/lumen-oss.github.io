@@ -186,6 +186,21 @@ rev = "09511782201302ade916d4b250d01a6c61b56844" # The commit SHA or tag
 If the `rev` is not set, Lux will treat the `version` field as the commit SHA or tag
 to check out.
 
+### Local dependencies
+
+To tell Lux to use a local project as a dependency, you can specify a relative path:
+
+```toml tile="example"
+[dependencies.foo]
+path = "../foo"
+version = "1.0.0"
+```
+
+:::important
+You should still declare a version so that the package can be published
+:::
+
+
 ## Build specification
 
 You can use the `build` table to let Lux and Luarocks know how to build your rock.
