@@ -38,5 +38,7 @@ version = "1.0.0"
 ```
 
 :::important
-You should still declare a version so that the package can be published
+- You should still declare a version so that the package can be published.
+- If your project lives in a subdirectory, you should also set `source.dir`.
+  Make sure it points to the correct directory in any archives specified by `source.url`.
 :::
