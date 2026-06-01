@@ -41,4 +41,7 @@ version = "1.0.0"
 - You should still declare a version so that the package can be published.
 - If your project lives in a subdirectory, you should also set `source.dir`.
   Make sure it points to the correct directory in any archives specified by `source.url`.
+  For example, if the archive extracts to a folder named `my_project`,
+  and the project is located within the subdirectory `foo/bar`, 
+  set `source.dir = my_project/foo/bar`.
 :::
