@@ -87,13 +87,7 @@ return {
 
 For full reference, see [the `busted` website](https://lunarmodules.github.io/busted).
 
-## Alternate Test Backends
-
-You don't have to use `busted` as a test backend.
-See the test section in [How to declare a lux.toml file](/guides/lux-toml)
-for alternate test backends.
-
-## Testing with Pandoc
+### Testing with Pandoc
 
 [`pandoc`](https://pandoc.org/) supports custom Lua filters and integrates an embedded Lua interpreter. 
 
@@ -120,3 +114,9 @@ However, some `pandoc` binaries are built without this support, including the bi
 by the pandoc project and conda-forge. See the [installation documentation](https://pandoc.org/installing.html) 
 for more information.
 :::
+
+## Alternate Test Backends
+
+You don't have to use `busted` as a test backend.
+See the test section in [How to declare a lux.toml file](/guides/lux-toml)
+for alternate test backends.
