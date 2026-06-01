@@ -335,7 +335,7 @@ type = "rust-mlua"
 target_path = "target"
 default_features = false # Passes --no-default-features to Cargo.
 features = [] # Lux will automatically pass the correct mlua feature based on the Lua version.
-
+cargo_extra_args = [] # extra arguments to pass to `cargo build`
 
 [build.modules] # (optional)
 # This expects that Cargo will build a native library in `<target>/release/libalt_name.so`.
