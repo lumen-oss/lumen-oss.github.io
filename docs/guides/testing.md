@@ -98,10 +98,24 @@ for alternate test backends.
 [`pandoc`](https://pandoc.org/) supports custom Lua filters and integrates an embedded Lua interpreter. 
 
 `busted` can be configured to test Lua filters using the `pandoc` Lua interpreter by setting 
-`lua = pandoc lua` in the `.busted` configuration file.
+`lua = pandoc lua` in the `.busted` configuration file:
+
+```lua title=".busted"
+return {
+    pandoc = {
+        lua = "pandoc lua",
+    },
+}
+```
+
+Then, run the tests with `lx --lua-version 5.4 test -- --run pandoc`.
 
 :::note
-In order to run tests with `pandoc`, the Lua interpreter must support dynamic module loading.
+Make sure that `lx test` is invoked with the Lua version matching the one embedded in `pandoc`
+:::
+
+:::important
+In order to run tests with `pandoc`, the embedded Lua interpreter must support dynamic module loading.
 However, some `pandoc` binaries are built without this support, including the binary distributed 
 by the pandoc project and conda-forge. See the [installation documentation](https://pandoc.org/installing.html) 
 for more information.
