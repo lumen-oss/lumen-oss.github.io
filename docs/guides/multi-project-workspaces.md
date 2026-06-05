@@ -14,9 +14,16 @@ In your workspace root, add a `lux.toml` with the relative paths to your project
 ```toml title="lux.toml at workspace root"
 [worskpace]
 members = [
-    "projects/foo"
-    "projects/bar"
+    "projects/foo",
+    "projects/bar",
 ]
+```
+
+Or:
+
+```toml title="lux.toml at workspace root"
+[worskpace]
+members = ["glob:projects/*"]
 ```
 
 Then add a `lux.toml` to each directory:
