@@ -23,6 +23,34 @@ Keep your API key safe and secure. It's like a password and should not be shared
 The key we showed above is an example and not a real key.
 :::
 
+## Two-Factor Authentication (2FA)
+
+Over the past years there have been a plethora of attacks on popular package registries, especially npm.
+These attacks hijack API tokens to impersonate authors of popular packages and inject packages used by millions of people with malware.
+For this reason, we strongly encourage absolutely everyone to set up 2FA for their luarocks account.
+Head over to [the luarocks.org 2FA settings](https://luarocks.org/settings/two-factor-auth)
+and scan the QR code with your favourite authenticator app.
+
+If you plan on using a CI/CD engine that utilizes Lux for uploads, copy the secret key shown under the QR code.
+To add the secret to GitHub Actions, refer to [this guide](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
+
+:::warning Security
+- Do not sore your 2FA secret in the same place as your API key or login credentials.
+- Make sure your CI environment has a way to expose the secret to Lux via
+  the `LUAROCKS_2FA_SECRET` environment variable without leaking it.
+  If the secret ever gets leaked, an attacker can impersonate and freely generate 2FA keys on your behalf.
+:::
+
+![Enabling two-factor authentication](/img/luarocks-2fa.png)
+
+After enabling 2FA, make sure to require it for uploads:
+
+- Check the "Require 2FA for API uploads" checkbox.
+- Enter your password and the verification code from your authenticator app.
+- Click "Update settings".
+
+![Enabling two-factor authentication](/img/luarocks-upload-2fa.png)
+
 ## Creating a Repository
 
 As we mentioned in the previous chapters, a rockspec is a set of instructions
@@ -71,14 +99,21 @@ type = "builtin"
 
 ## Publishing
 
-With the API key in hand, we can now publish our rock. Run the following command in your project directory:
+With the API key in hand, we can now publish our rock.
+Open your authenticator app and grab the code.
+Run the following command in your project directory:
 
 ```sh
-LUX_API_KEY=your-api-key lx upload
+LUX_API_KEY=<your-api-key> lx upload --tfa-code "384562"
 ```
 
 Lux will now package your project and upload it to luarocks!
 Feel free to check out the [luarocks.org](https://luarocks.org) website to see your project listed in the "Recent Modules" section.
+
+:::note
+We also provide [a GitHub action](https://github.com/marketplace/actions/luxaction)
+which you can use to automate this.
+:::
 
 ## Congratulations! :tada:
 
