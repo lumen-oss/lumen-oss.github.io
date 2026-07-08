@@ -3,41 +3,70 @@ id: code-hygiene
 title: Code Hygiene
 ---
 
-Code hygiene is the practice of writing code that is readable and maintainable.
-In this chapter, we'll let tools automatically clean up our code for us.
+In this chapter, we'll run Lux's type checker, linter, and formatter on our
+project to catch issues and keep the code consistent.
 
-## Type checks with LuaCATS annotations
+## Type checking
 
-Lua is incredibly responsive when used for configuration or scripting, giving immediate feedback.
-But in the context of a project that needs to be maintained long-term, its dynamic typing casts
-shadows of unpredictability, making Lua projects susceptible to unexpected bugs at the wrong time.
+Lux can statically type-check your Lua code using
+[LuaCATS annotations](https://github.com/EmmyLuaLs/emmylua-analyzer-rust).
+Let's run it on our project:
 
-To help mitigate this, Lux provides a `lx check` command, which uses [emmylua_check](https://github.com/EmmyLuaLs/emmylua-analyzer-rust)
-to statically type-check your codebase based on [LuaCATS annotations](https://github.com/EmmyLuaLs/emmylua-analyzer-rust).
+```sh
+lx check
+```
 
-The command will:
+Everything should pass with no errors.
 
-1. Build your project and its dependencies if not done already.
-2. Generate workspace library entries for a [`.luarc.json` file](https://github.com/LuaLS/lua-language-server/wiki/Configuration-File).
-3. Run the static checker.
+Now let's see what happens when there's a type mismatch. Open
+`src/has_hello.lua` and change the `input` parameter annotation
+from `string` to `integer`:
 
-<!--TODO: show output of lx check and fix the errors that exist there-->
+```lua
+---@param input integer
+local function has_hello(input)
+```
+
+Run `lx check` again:
+
+```sh
+lx check
+```
+
+This time Lux should report that `string:lower()` can't be called on
+an `integer`. Go ahead and change the annotation back to `string`.
 
 ## Linting with `lx lint`
 
-Linting is the process of analyzing code for potential errors and stylistic issues (lines too long, unused variables, etc.).
-To lint the entire project, we can run:
+Lux uses [luacheck](https://github.com/lunarmodules/luacheck) to detect
+potential errors and style issues. Let's try it on our project:
 
 ```sh
 lx lint
 ```
 
-<!--TODO: show output of lx lint and fix the errors that exist there-->
+No issues should be reported.
+
+Now let's introduce one. Open `src/has_hello.lua` and add an unused local
+variable:
+
+```lua
+local unused = true
+local function has_hello(input)
+```
+
+Run `lx lint` again:
+
+```sh
+lx lint
+```
+
+Lux should report that `unused` is assigned but never used. Remove the line
+and re-run to confirm the warning is gone.
 
 ## Formatting with `lx fmt`
 
-Lux comes with a Lua code formatter that can automatically format your Lua code to a consistent style.
-To make our code style consistent accross the codebase, we can run:
+Let's format our code:
 
 ```sh
 lx fmt
