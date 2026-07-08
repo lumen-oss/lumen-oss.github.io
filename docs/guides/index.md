@@ -8,6 +8,9 @@ sidebar_position: 2
 
 Want to get better at using Lux? Look no further than this set of guides.
 
+## Getting Started
+- [How to install Lux](/guides/installation)
+
 ## Maintenance
 - [How to publish a Lua project](/guides/publishing)
 - [How to publish a new release of your project](/guides/project-updating)
