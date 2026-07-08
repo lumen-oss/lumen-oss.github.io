@@ -93,13 +93,109 @@ LUX_API_KEY=your-key-here
 
 With all the above prerequisites, we're now ready to publish.
 
-If you've configured `direnv`, run:
+If you have 2FA enabled, grab a code from your authenticator app and pass it
+with `--tfa-code`:
+
+```sh
+lx upload --tfa-code "384562"
+```
+
+Or, if you've configured `LUAROCKS_2FA_SECRET`, you don't need the flag —
+Lux will generate a code automatically.
+
+If you've configured `direnv`, you can omit the explicit `LUX_API_KEY`:
+
 ```sh
 lx upload
 ```
 
-Otherwise, be sure to provide your API key as an exported environment variable:
+Otherwise, provide your API key as an exported environment variable:
 
 ```sh
 LUX_API_KEY=your-key lx upload
 ```
+
+:::note
+We also provide [a GitHub Action](https://github.com/marketplace/actions/luxaction)
+which you can use to automate publishing in CI/CD.
+:::
+
+## Distributing an archive or a binary
+
+Lux can produce distributable artifacts of your project — either a flat archive
+containing all Lua dependencies, or a standalone executable.
+
+### Flat archive
+
+From your project directory, run:
+
+```sh
+lx dist flat-archive
+```
+
+This produces `<package>-<version>.zip` containing your project and all its
+runtime dependencies. The `--destination` (or `-d`) flag controls where the
+archive is written:
+
+```sh
+lx dist flat-archive --destination ./dist/my-app.zip
+```
+
+Compression can be configured with `--compression-method` (or `-c`):
+
+```sh
+lx dist flat-archive --compression-method deflated
+```
+
+Run `lx dist flat-archive --help` for the full list of compression methods.
+
+:::note
+Unlike a regular Lux tree, the archive does not include `lux.loader`, so
+conflicting dependencies between packages are not supported.
+:::
+
+#### Distributing other packages
+
+You can also create an archive of any package available on luarocks.org:
+
+```sh
+lx dist flat-archive argparse
+lx dist flat-archive "argparse@0.7.0"
+```
+
+Or from a RockSpec path:
+
+```sh
+lx dist flat-archive /path/to/foo-1.0.0-1.rockspec
+```
+
+### Single binary
+
+To compile your project into a static executable that does not require Lua,
+add a `[run]` section to your `lux.toml` pointing to the entrypoint:
+
+```toml title="lux.toml"
+[run]
+args = ["src/main.lua"]
+```
+
+Then build with:
+
+```sh
+lx dist bin
+```
+
+Use `--output` (or `-o`) to specify the destination path:
+
+```sh
+lx dist bin --output ./dist/my-app
+```
+
+:::note
+Compiling native Lua modules into a static binary is currently supported on
+Linux only. On other platforms, projects with C dependencies will produce
+a build error.
+:::
+
+Both commands support `--porcelain` for machine-readable JSON output, useful
+for scripting or CI/CD pipelines.

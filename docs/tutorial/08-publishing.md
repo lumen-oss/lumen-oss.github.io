@@ -119,3 +119,83 @@ which you can use to automate this.
 
 You have just successfully published your first Lua package! Well done.
 If you'd like to learn more about Lux, feel free to take a look at our [guides](/guides).
+
+## Distributing an archive or a binary
+
+Sometimes you may want to distribute your application to users who don't use Lux,
+or bundle it for use in a CI/CD pipeline where installing dependencies at runtime
+is impractical.
+
+Lux provides two distribution strategies:
+
+- **Flat archive** -- a `.zip` file containing your project and all its runtime
+  dependencies, ready to be extracted and used with any Lua installation.
+- **Single binary** -- a standalone executable with Lua and all dependencies
+  compiled in, so users don't need Lua installed at all.
+
+### Flat archive
+
+From your project directory, create an archive with:
+
+```sh
+lx dist flat-archive
+```
+
+This produces a file named `<package>-<version>.zip` in your current directory.
+The archive contains a flat install tree with your application and all its Lua
+dependencies (except build dependencies).
+
+:::note
+Unlike a regular Lux installation,
+it does not include the `lux.loader`, so conflicting dependencies between packages
+are not supported.
+:::
+
+#### Specifying a destination
+
+Use the `--destination` (or `-d`) flag to control where the archive is written:
+
+```sh
+lx dist flat-archive --destination ./dist/my-app.zip
+```
+
+If the destination is a directory, the file will be placed inside it with the
+default name.
+
+#### Choosing a compression method
+
+By default the archive uses the `stored` method (no compression), which is fastest.
+You can choose a different compression method with `--compression-method` (or `-c`):
+
+```sh
+lx dist flat-archive --compression-method deflated
+```
+
+Run `lx dist flat-archive --help` to see the available compression methods.
+
+### Single static binary
+
+Lux can compile your project into a single static binary that runs on systems
+without Lua installed. The `[run]` section we set up earlier tells Lux where
+the entrypoint is. It uses this to know what to compile into the binary.
+Simply run:
+
+```sh
+lx dist bin
+```
+
+This produces an executable named after your package (e.g. `my-lua-project`)
+in the current directory.
+
+#### Output path
+
+Use the `--output` (or `-o`) flag to choose where the binary is written:
+
+```sh
+lx dist bin --output ./dist/my-app
+```
+
+:::note
+Compiling native Lua modules into a static binary is currently supported on Linux only.
+On other platforms, projects with C dependencies will produce a build error.
+:::
