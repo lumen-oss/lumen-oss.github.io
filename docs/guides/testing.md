@@ -47,6 +47,8 @@ Output:
 2 successes / 0 failures / 0 errors / 0 pending : 0.001615 seconds
 ```
 
+See `lx test --help` for available backends and options.
+
 ## Customizing with `.busted`
 
 To change the test directory or Lua interpreter, create a `.busted` file in your project root:

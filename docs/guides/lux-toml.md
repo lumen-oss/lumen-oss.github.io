@@ -34,6 +34,9 @@ argparse = "0.7"
 Use `[test_dependencies]` for test-only dependencies and
 `[build_dependencies]` for build-time dependencies.
 
+Use `lx add <package>` to add dependencies from the CLI.
+See `lx add --help` for available options.
+
 ## Adding a source URL
 
 When [publishing](/guides/publishing), configure the source URL template:

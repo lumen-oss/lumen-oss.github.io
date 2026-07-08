@@ -36,3 +36,5 @@ Run the project with Neovim:
 ```sh
 lx run
 ```
+
+See `lx run --help` for available options.

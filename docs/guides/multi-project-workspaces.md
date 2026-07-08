@@ -51,3 +51,5 @@ version = "1.0.0"
   and the project is located within the subdirectory `foo/bar`, 
   set `source.dir = my_project/foo/bar`.
 :::
+
+See `lx add --help` and `lx vendor --help` for related CLI commands.

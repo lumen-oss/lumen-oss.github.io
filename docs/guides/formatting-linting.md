@@ -29,6 +29,8 @@ space_after_function_names = "Never"
 enabled = false
 ```
 
+See `lx fmt --help` for available options.
+
 ## Type checks with LuaCATS annotations
 
 Run `lx check` to statically type-check your codebase with [emmylua_check](https://github.com/EmmyLuaLs/emmylua-analyzer-rust),
@@ -38,11 +40,15 @@ The command builds your project and its dependencies (if needed),
 generates workspace library entries for a [`.luarc.json` file](https://github.com/LuaLS/lua-language-server/wiki/Configuration-File),
 and runs the static checker.
 
+See `lx check --help` for available options.
+
 ## Linting with `luacheck`
 
 ```sh
 lx lint
 ```
+
+See `lx lint --help` for available options.
 
 ## Git Hooks
 

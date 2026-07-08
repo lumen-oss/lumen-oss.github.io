@@ -58,3 +58,5 @@ build = {
   }
 }
 ```
+
+See `lx generate-rockspec --help` and `lx install-rockspec --help` for CLI options.

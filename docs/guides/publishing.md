@@ -191,3 +191,5 @@ a build error.
 
 Both commands support `--porcelain` for machine-readable JSON output, useful
 for scripting or CI/CD pipelines.
+
+See `lx upload --help`, `lx dist flat-archive --help`, and `lx dist bin --help` for all options.

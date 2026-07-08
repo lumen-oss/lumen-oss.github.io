@@ -42,3 +42,5 @@ To pass the API key inline:
 ```sh
 LUX_API_KEY=your-key lx upload
 ```
+
+See `lx upload --help` for all options.
