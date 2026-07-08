@@ -3,11 +3,11 @@ id: creating-a-project
 title: Creating a Project
 ---
 
-In the next chapters we will learn how to create, manage and publish a small Lua CLI
-that checks whether a sentence provided to the program contains the string "hello".
-We will cover dependencies, the `lux.toml` format and more all the way up to API keys!
+In this chapter, we'll scaffold our project with `lx new` and take a first
+look at the files it generates. Along the way we'll see how `lux.toml` ties
+everything together.
 
-To start writing Lua, we must initialize a project where we will store our code.
+To start, we'll initialize a project where we will store our code.
 We'll do this in a `my-lua-project/` directory.
 To create a project, we can run:
 
@@ -53,7 +53,8 @@ Inside of our project, you should see that a basic project skeleton was created:
     └── main.lua
 ```
 
-The `lux.toml` file describes instructions on how to build and ship your Lua code.
+Lux reads `lux.toml` to understand your project -- its name, version,
+dependencies, build instructions, and how to run it.
 Let's enter the file. You should see contents similar to the following:
 
 ```toml title="lux.toml"
@@ -81,7 +82,7 @@ type = "builtin"
 ## Checking our Progress
 
 To check whether our project was made successfully, first make sure you're in
-the `my-lua-project/` directory; afterwards, you can run a secret command:
+the `my-lua-project/` directory; afterwards, we can verify the project with:
 
 ```bash
 lx debug project
