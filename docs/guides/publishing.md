@@ -76,6 +76,36 @@ You can find your API key by logging into your account on
 settings](https://luarocks.org/settings/api-keys).
 
 From here, you can create a new API key or use an existing one.
+Here's an example of what an API key looks like:
+
+```
+wXnNFASnbacLCkgSzKb6t9cLSmNcO3ZV9mIaxrPK
+```
+
+:::warning Security
+Keep your API key safe and secure. It's like a password and should not be shared
+with anyone. The key shown above is an example and not a real key.
+:::
+
+## Two-Factor Authentication (2FA)
+
+We strongly encourage everyone to set up 2FA for their luarocks account.
+Head over to [the luarocks.org 2FA settings](https://luarocks.org/settings/two-factor-auth)
+and scan the QR code with your favourite authenticator app.
+
+If you plan on using Lux in CI/CD, copy the secret key shown under the QR code.
+You can expose it to Lux via the `LUAROCKS_2FA_SECRET` environment variable.
+
+:::warning Security
+- Do not store your 2FA secret in the same place as your API key or login credentials.
+- Make sure your CI environment exposes the secret to Lux without leaking it.
+- If the secret gets leaked, an attacker can generate 2FA codes on your behalf.
+:::
+
+After enabling 2FA, make sure to require it for uploads:
+- Check the "Require 2FA for API uploads" checkbox.
+- Enter your password and the verification code from your authenticator app.
+- Click "Update settings".
 
 ### Configuring `direnv` (optional)
 
