@@ -3,14 +3,22 @@ id: adding-dependencies
 title: Adding Dependencies
 ---
 
-Lua has a very little standard library, so let's download some helpful
-dependencies before we start writing any code. Since we want to develop a CLI,
-we need a library capable of parsing flags and arguments. To do so, we will use
-version `0.7` of [`argparse`](https://luarocks.org/modules/argparse/argparse).
-We'll install it with the following command:
+In this chapter, we'll add an argument parser called `argparse` to our project
+and verify it loads correctly with `lx lua`.
+
+Since we're building a CLI, we need something to parse flags and arguments.
+We'll use version `0.7` of [`argparse`](https://luarocks.org/modules/argparse/argparse):
 
 ```sh
 lx add argparse@0.7
+```
+
+Lux will download and install `argparse` and any transitive dependencies.
+You should see output similar to:
+
+```
+Added argparse 0.7.1
+...
 ```
 
 :::note
