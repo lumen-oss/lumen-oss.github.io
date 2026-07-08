@@ -3,9 +3,8 @@ id: testing
 title: Testing Our Code
 ---
 
-Testing allows us to ensure that our code behaves as expected and that we don't
-introduce regressions when making changes. In this chapter, we'll learn how to
-write tests for our Lua code.
+In this chapter, we'll extract the `has_hello` function into its own module
+and write tests for it using `busted`.
 
 :::info Testing Framework
 In Lua, testing is primarily done using the
@@ -13,11 +12,10 @@ In Lua, testing is primarily done using the
 Lux takes care of installing `busted` for you when running tests!
 :::
 
-## Restructuring Our Project
+## Extracting the module
 
-To start testing our code, we need to restructure our project a little. First, let's
-move out our newly made `has_hello` function into its own file. Create a new file
-called `src/has_hello.lua` and move the function there:
+We'll move `has_hello` into its own file so our tests can import it directly.
+Create a new file called `src/has_hello.lua` and move the function there:
 
 ```lua title="src/has_hello.lua"
 --- Checks whether input has the word "hello"
@@ -84,7 +82,7 @@ end)
 
 Before we run the tests, we need to tell Lux that we want to use `busted`
 as the test runner.
-To do this, let's edit the `lux.toml` and add the following:
+Add this to the bottom of your `lux.toml`:
 
 ```toml title="test specification"
 [test]
@@ -102,3 +100,24 @@ project. After taking a moment to install `busted`, Lux should show you the foll
 ```
 
 If so, congratulations! You've successfully written and ran your first test!
+
+Now let's see what happens when a test fails. Open `src/has_hello.lua` and
+change the word `"hello"` to `"hi"` in the `find` call:
+
+```lua
+return input:lower():find("hi") ~= nil
+```
+
+Run `lx test` again:
+
+```sh
+lx test
+```
+
+You should see one test pass and one fail -- the second test expects the
+function to return `false` when the input doesn't contain "hello", but now
+it looks for "hi" instead. Change it back to `"hello"` and re-run to
+confirm both tests pass again.
+
+Take a look at the [busted documentation](https://github.com/lunarmodules/busted)
+for more patterns and matchers you can use in your tests.
