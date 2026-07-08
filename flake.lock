@@ -79,11 +79,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1783524468,
-        "narHash": "sha256-c/vlFLE2AD7strgtZKI2F0NWTHaJYCLanFVUa91/j6U=",
+        "lastModified": 1783552448,
+        "narHash": "sha256-VU24LpU4hlC/9C0x2F6N0p344qNmV1DtvuYWiCCj1iM=",
         "owner": "lumen-oss",
         "repo": "lux",
-        "rev": "44e3840f7d4b6ff2f25b4d8a16b2eabd9f4d1a78",
+        "rev": "bccb4d90c6e6080b5e216ba42eab9f274cc44c64",
         "type": "github"
       },
       "original": {

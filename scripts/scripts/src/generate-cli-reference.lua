@@ -1,0 +1,1 @@
+../generate-cli-reference.lua

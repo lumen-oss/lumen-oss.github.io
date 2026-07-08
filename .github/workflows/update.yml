@@ -1,6 +1,11 @@
 name: update-flake-lock
 on:
   workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 0 * * *' # runs nightly at midnight
+
+jobs:
+  lockfile:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,8 +24,3 @@ on:
           pr-labels: |                  # Labels to be set on the PR
             dependencies
             automated
-      - uses: reitermarkus/automerge@v2
-        with:
-          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
-          merge-method: squash
-          pull-request: ${{ github.event.inputs.pull-request }}
