@@ -3,6 +3,9 @@ id: making-the-application
 title: Making the CLI Application
 ---
 
+In this chapter, we'll write the CLI logic -- first a simple echo, then the
+"hello" detector we planned from the start.
+
 ## Creating the Skeleton
 
 Let's add some simple boilerplate using `argparse`. This program will print back anything
@@ -21,7 +24,9 @@ local args = parser:parse()
 print(args.input)
 ```
 
-Run the following command to see your code in action:
+`lx run` executes our project's entrypoint -- the file we configured in the
+`[run]` section of `lux.toml` -- and passes any arguments along to it.
+Run the following to see your code in action:
 
 ```sh
 lx run "Testing our code!"
@@ -31,7 +36,7 @@ You should see `Testing our code!` printed right back at you in the console!
 
 ## Expanding the Code
 
-Now we'll finalize what we sought to achieve in this series - checking whether the input contains the word "hello".
+Now we'll add the feature we set out to build -- checking whether the input contains "hello".
 Let's expand our code to do just that:
 
 ```lua title="src/main.lua"
@@ -67,5 +72,4 @@ Your input has the word 'hello' in it!
 Your input does not have the word 'hello' in it!
 ```
 
-Well done! Our code is done and dusted. However, this isn't all there is to writing an application.
-We're now ready to move on to the next stage of our program's lifecycle - testing.
+Well done! Our code is ready. Next up: testing.
