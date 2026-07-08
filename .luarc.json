@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/lua-language-server/refs/heads/master/schema/luarc.json",
+  "workspace": {
+    "checkThirdParty": false,
+    "library": [],
+    "ignoreDir": [],
+    "ignoreGlobs": []
+  },
+  "runtime": {
+    "version": "Lua 5.4"
+  },
+  "diagnostics": {
+    "globals": ["io", "os", "arg", "print"]
+  }
+}

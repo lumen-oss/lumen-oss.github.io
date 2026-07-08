@@ -46,6 +46,9 @@
           buildInputs = with pkgs; [
             bun
             lux-cli
+            lua
+            groff
+            pandoc
           ];
         };
       }

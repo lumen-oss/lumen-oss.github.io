@@ -12,3 +12,4 @@ Detailed reference documentation for Lux configuration and tooling.
 
 - [lux.toml reference](/reference/lux-toml) — all fields, build backends, and test specifications
 - [Environment variables reference](/reference/environment-variables) — `LUX_API_KEY` and `LUAROCKS_2FA_SECRET`
+- [CLI reference](/reference/cli) — all `lx` subcommands and global options (auto-generated from man page)
