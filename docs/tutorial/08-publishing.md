@@ -25,9 +25,7 @@ The key we showed above is an example and not a real key.
 
 ## Two-Factor Authentication (2FA)
 
-Over the past years there have been a plethora of attacks on popular package registries, especially npm.
-These attacks hijack API tokens to impersonate authors of popular packages and inject packages used by millions of people with malware.
-For this reason, we strongly encourage absolutely everyone to set up 2FA for their luarocks account.
+We strongly encourage setting up two-factor authentication for your luarocks account.
 Head over to [the luarocks.org 2FA settings](https://luarocks.org/settings/two-factor-auth)
 and scan the QR code with your favourite authenticator app.
 
@@ -115,87 +113,56 @@ We also provide [a GitHub action](https://github.com/marketplace/actions/luxacti
 which you can use to automate this.
 :::
 
-## Congratulations! :tada:
-
-You have just successfully published your first Lua package! Well done.
-If you'd like to learn more about Lux, feel free to take a look at our [guides](/guides).
-
 ## Distributing an archive or a binary
 
-Sometimes you may want to distribute your application to users who don't use Lux,
-or bundle it for use in a CI/CD pipeline where installing dependencies at runtime
-is impractical.
-
-Lux provides two distribution strategies:
-
-- **Flat archive** -- a `.zip` file containing your project and all its runtime
-  dependencies, ready to be extracted and used with any Lua installation.
-- **Single binary** -- a standalone executable with Lua and all dependencies
-  compiled in, so users don't need Lua installed at all.
+Now that our package is on luarocks, let's look at two ways to distribute it
+to users who don't use Lux.
 
 ### Flat archive
 
-From your project directory, create an archive with:
+We can bundle our project and all its runtime dependencies into a single `.zip`:
 
 ```sh
 lx dist flat-archive
 ```
 
-This produces a file named `<package>-<version>.zip` in your current directory.
-The archive contains a flat install tree with your application and all its Lua
-dependencies (except build dependencies).
-
-:::note
-Unlike a regular Lux installation,
-it does not include the `lux.loader`, so conflicting dependencies between packages
-are not supported.
-:::
-
-#### Specifying a destination
-
-Use the `--destination` (or `-d`) flag to control where the archive is written:
+Lux creates `<package>-<version>.zip` in our current directory. Let's
+verify it:
 
 ```sh
-lx dist flat-archive --destination ./dist/my-app.zip
+ls *.zip
 ```
 
-If the destination is a directory, the file will be placed inside it with the
-default name.
+The archive contains our application and all its Lua dependencies (except
+build dependencies). Note that unlike a regular Lux install, it doesn't
+include `lux.loader`, so conflicting dependencies between packages are not
+supported.
 
-#### Choosing a compression method
+### Single binary
 
-By default the archive uses the `stored` method (no compression), which is fastest.
-You can choose a different compression method with `--compression-method` (or `-c`):
-
-```sh
-lx dist flat-archive --compression-method deflated
-```
-
-Run `lx dist flat-archive --help` to see the available compression methods.
-
-### Single static binary
-
-Lux can compile your project into a single static binary that runs on systems
-without Lua installed. The `[run]` section we set up earlier tells Lux where
-the entrypoint is. It uses this to know what to compile into the binary.
-Simply run:
+We can also compile our project into a standalone executable that runs on
+systems without Lua. Since the `[run]` section in `lux.toml` points to
+our entrypoint, Lux knows what to compile:
 
 ```sh
 lx dist bin
 ```
 
-This produces an executable named after your package (e.g. `my-lua-project`)
-in the current directory.
-
-#### Output path
-
-Use the `--output` (or `-o`) flag to choose where the binary is written:
+This produces an executable named `my-lua-project` (or `my-lua-project.exe`
+on Windows). Let's verify it runs:
 
 ```sh
-lx dist bin --output ./dist/my-app
+./my-lua-project "hello world"
 ```
 
 :::note
-Compiling native Lua modules into a static binary is currently supported on Linux only.
-On other platforms, projects with C dependencies will produce a build error.
+Compiling native Lua modules into a static binary is currently supported on
+Linux only. On other platforms, projects with C dependencies will produce
+a build error.
 :::
+
+## Congratulations! :tada:
+
+You have just successfully published your first Lua package! Well done.
+If you'd like to learn more about Lux, feel free to take a look at our
+[guides](/guides).
