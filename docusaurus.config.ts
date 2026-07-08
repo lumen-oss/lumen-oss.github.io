@@ -76,6 +76,12 @@ const config: Config = {
           label: 'Explanations',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'referenceSidebar',
+          position: 'left',
+          label: 'Reference',
+        },
+        {
           href: 'https://github.com/lumen-oss/lux',
           label: 'GitHub',
           position: 'right',
@@ -99,6 +105,10 @@ const config: Config = {
             {
               label: 'Explanations',
               to: '/explanations',
+            },
+            {
+              label: 'Reference',
+              to: '/reference',
             },
           ],
         },

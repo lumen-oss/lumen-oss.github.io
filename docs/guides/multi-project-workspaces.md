@@ -3,8 +3,8 @@ id: multi-project-workspaces
 title: How to declare a workspace with multiple projects
 ---
 
-Lux supports monorepos with multiple projects. You need to declare a workspace TOML
-at the root directory, and a project TOML for each project.
+To set up a monorepo with multiple projects, declare a workspace `lux.toml` at the root
+and a project `lux.toml` for each project.
 
 ## The root `lux.toml`
 
@@ -33,8 +33,7 @@ Then add a `lux.toml` to each directory:
 
 ## Declaring local dependencies
 
-If one of your projects depends on the other, you can make sure Lux builds the
-local package by declaring local dependencies:
+To declare a dependency on another project in the workspace, use a local dependency:
 
 ```toml title="projects/foo/lux.toml"
 # ...
@@ -45,7 +44,7 @@ version = "1.0.0"
 ```
 
 :::important
-- You should still declare a version so that the package can be published.
+- Declare a version so the package can be published.
 - If your project lives in a subdirectory, you should also set `source.dir`.
   Make sure it points to the correct directory in any archives specified by `source.url`.
   For example, if the archive extracts to a folder named `my_project`,

@@ -3,12 +3,11 @@ id: neovim
 title: How to use Neovim with Lux
 ---
 
-In this guide, we'll learn how to make Lux execute code using Neovim as the Lua interpreter.
+This guide shows you how to use Neovim as the Lua interpreter for Lux projects.
 
-## Ensuring Lua Version
+## Lua version
 
-Neovim ships with a `luajit` interpreter, which is equivalent to Lua version `5.1`.
-In your `lux.toml`, ensure that you specify version `5.1`:
+Neovim ships with LuaJIT (equivalent to Lua 5.1). Set this in your `lux.toml`:
 
 ```toml title="lux.toml"
 package = "package-name"
@@ -21,8 +20,7 @@ lua = "==5.1"
 
 ## Customizing `run`
 
-Neovim allows you to run scripts using `nvim -l`. To accommodate for this in Lux, edit your `lux.toml`
-and modify the `[run]` section as follows:
+Set the `[run]` section to use `nvim -l`:
 
 ```diff title="lux.toml"
 [run]
@@ -31,7 +29,10 @@ and modify the `[run]` section as follows:
 +args = [ "-l", "src/main.lua" ]
 ```
 
-## Running our Code
+## Running the project
 
-Neovim is now hooked up to Lux. Any calls to `lx run` will now execute through Neovim, allowing you to use Neovim's
-Lua API.
+Run the project with Neovim:
+
+```sh
+lx run
+```

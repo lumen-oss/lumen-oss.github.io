@@ -1,15 +1,13 @@
 ---
 id: installation
 title: How to install Lux
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 This guide covers the various ways to install Lux on your system.
-
-If you just want to get started quickly, the [tutorial](/tutorial/getting-started)
-walks you through the recommended path.
 
 ## Package managers
 
@@ -84,8 +82,7 @@ export PATH="/Applications/lux-cli.app/Contents/MacOS:$PATH"
 ```
 
 :::note
-As a young FOSS project, we do not notarize the macOS package,
-so you may have to configure Gatekeeper to allow you to use it.
+The package is not notarized, so you may need to configure Gatekeeper to allow it.
 :::
 
 </TabItem>
@@ -99,8 +96,7 @@ Download and run the installer:
 After installing, add the install directory to your `PATH`.
 
 :::note
-As a young FOSS project, we do not sign the Windows package with a CA,
-so you will be shown a "Windows protected your PC" warning when running the installer.
+The package is not signed, so Windows will show a "Windows protected your PC" warning.
 :::
 
 :::important
@@ -113,7 +109,7 @@ when using Lux on the command line.
 
 ## Installing from source with Cargo
 
-If you have a Rust toolchain installed, you can install Lux from source.
+Install with a Rust toolchain via Cargo:
 
 Install through `cargo binstall` for fastest install times:
 

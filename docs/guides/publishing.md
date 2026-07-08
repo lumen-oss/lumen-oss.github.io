@@ -3,41 +3,17 @@ id: publishing
 title: How to publish a Lua project
 ---
 
-In this guide, we'll learn how to publish our Lua project to [luarocks.org](https://luarocks.org)
-so it can be used by others.
+This guide shows you how to publish a Lua project to [LuaRocks](https://luarocks.org).
 
-## Host your Code
+## Host your code
 
-To publish your code to Luarocks, you first need to host your code on a forge such as
-[Github](https://github.com/), [Gitlab](https://gitlab.com) or similar.
+Push your code to a public Git forge repository and note its URL.
 
-The forge you choose doesn't matter, however, for maximum compatibility, we recommend
-using a Git forge as opposed to something like Mercurial or older VCSes.
+## Choosing a version
 
-Once you've properly set your remote and pushed your code, take note of the URL of your repository
-and ensure that your repository's visibility is set to public.
+Choose a [SemVer](https://semver.org/) version number. Set it in your `lux.toml` or create a git tag (with optional `v` prefix) — Lux will detect it automatically.
 
-## Publishing a Release
-
-Apart from the code itself, you must also create a release for the code you published with a version number.
-
-First, you must choose a version number. Lux requires that all projects follow
-the [Semantic Versioning](https://semver.org/) specification. If your project is still unstable,
-mark it as version `0.1.0`. If your code is ready for general use, mark it as
-version `1.0.0`.
-Lux can infer the version from a SemVer compliant git tag (with an optional `v` prefix).
-In this case, you do not need to declare the version in your `lux.toml`.
-
-There are many ways to keep track of versioning or releases. We recommend a
-tool like [release-please](https://github.com/googleapis/release-please), which automatically
-tracks a changelog and creates releases for you based on your commit messages.
-
-If you do not want to use automation, most Git forges have UIs that allow you
-to publish releases. Navigate to your forge and create a release named after
-your version (e.g. `1.0.0`). If your forge doesn't have such functionality,
-creating a git tag named after a version will also suffice.
-
-## Configuring a Source URL
+## Configuring a source URL
 
 With the URL in hand, open your project's `lux.toml` and add the following section:
 
@@ -55,9 +31,8 @@ dev = "git+https://github.com/my-username/my-project.git"
 ...
 ```
 
-`url` is a template for a SemVer release URL; in this case, a ZIP archive for the release tag.
-Note the `$(REF)` variable in the URL template. Lux will substitute it with the tag or revision.
-`dev` is a template for a dev release URL, which is a git URL in this example.
+`url` is a SemVer release URL template; Lux substitutes `$(REF)` with the tag or revision.
+`dev` is a dev release URL template.
 
 :::note
 You could also specify `v$(VERSION)` to inject the version instead.
@@ -66,10 +41,10 @@ or any environment variable via `$(VAR_NAME)`.
 :::
 
 :::important
-We must provide the `git+https://` protocol in the `dev` URL template to instruct Lux to use `git`.
+The `dev` URL must use the `git+https://` protocol to instruct Lux to use `git`.
 :::
 
-## Acquiring an API Key
+## Acquiring an API key
 
 You can find your API key by logging into your account on
 [luarocks.org](https://luarocks.org) and navigating to the [API Key
@@ -87,11 +62,10 @@ Keep your API key safe and secure. It's like a password and should not be shared
 with anyone. The key shown above is an example and not a real key.
 :::
 
-## Two-Factor Authentication (2FA)
+## Two-factor authentication (2FA)
 
-We strongly encourage everyone to set up 2FA for their luarocks account.
-Head over to [the luarocks.org 2FA settings](https://luarocks.org/settings/two-factor-auth)
-and scan the QR code with your favourite authenticator app.
+Set up 2FA on your LuaRocks account (recommended). Go to the [2FA settings](https://luarocks.org/settings/two-factor-auth)
+and scan the QR code with your authenticator app.
 
 If you plan on using Lux in CI/CD, copy the secret key shown under the QR code.
 You can expose it to Lux via the `LUAROCKS_2FA_SECRET` environment variable.
@@ -109,9 +83,8 @@ After enabling 2FA, make sure to require it for uploads:
 
 ### Configuring `direnv` (optional)
 
-For serious projects, we highly recommend storing your API key in a `.env` file
-and loading it with [`direnv`](https://direnv.net/) to prevent your API key
-from being leaked through shell history.
+Store your API key in a `.env` file and load it with [`direnv`](https://direnv.net/)
+to prevent leaking through shell history.
 
 Once you've configured `direnv`, set `LUX_API_KEY` to your key:
 
@@ -121,10 +94,7 @@ LUX_API_KEY=your-key-here
 
 ## Publishing
 
-With all the above prerequisites, we're now ready to publish.
-
-If you have 2FA enabled, grab a code from your authenticator app and pass it
-with `--tfa-code`:
+If you have 2FA enabled, pass a code from your authenticator app with `--tfa-code`:
 
 ```sh
 lx upload --tfa-code "384562"
@@ -146,14 +116,11 @@ LUX_API_KEY=your-key lx upload
 ```
 
 :::note
-We also provide [a GitHub Action](https://github.com/marketplace/actions/luxaction)
-which you can use to automate publishing in CI/CD.
+Lux also provides a [GitHub Action](https://github.com/marketplace/actions/luxaction)
+for automating publishing in CI/CD.
 :::
 
-## Distributing an archive or a binary
-
-Lux can produce distributable artifacts of your project — either a flat archive
-containing all Lua dependencies, or a standalone executable.
+## Distributing artifacts
 
 ### Flat archive
 
@@ -178,11 +145,6 @@ lx dist flat-archive --compression-method deflated
 ```
 
 Run `lx dist flat-archive --help` for the full list of compression methods.
-
-:::note
-Unlike a regular Lux tree, the archive does not include `lux.loader`, so
-conflicting dependencies between packages are not supported.
-:::
 
 #### Distributing other packages
 
