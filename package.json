@@ -17,6 +17,8 @@
   "dependencies": {
     "@docusaurus/core": "3.6.3",
     "@docusaurus/preset-classic": "3.6.3",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify/react": "^6.0.2",
     "@mdx-js/react": "^3.0.0",
     "caniuse-lite": "^1.0.30001743",
     "clsx": "^2.0.0",

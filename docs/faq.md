@@ -34,6 +34,11 @@ replace Lua for Lua tasks. It occupies the same niche as `cargo`
 for Rust or `uv` for Python — a separate tool built in a language
 suited to systems programming, distribution, and correctness.
 
+## How does Lux compare with LuaRocks?
+
+See the [Comparison with LuaRocks](/explanations/lux-vs-luarocks) page
+for a detailed feature-by-feature breakdown.
+
 ## Why is the CLI called `lx` instead of `lux`?
 
 `lux` is the SI unit for illuminance, and `lx` is its symbol. We found it fitting. It is also less likely to clash with other CLI tools.

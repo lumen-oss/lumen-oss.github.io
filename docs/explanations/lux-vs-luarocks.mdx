@@ -1,0 +1,129 @@
+---
+slug: /explanations/lux-vs-luarocks
+id: lux-vs-luarocks
+title: Comparison with LuaRocks
+---
+
+LuaRocks has served the Lua community well for many years. Lux builds on
+that foundation, taking a different approach to project management and
+developer experience.
+
+Lux retains full compatibility with the LuaRocks ecosystem: it can
+install packages from luarocks.org, load existing `.rockspec` files, and
+shell out to LuaRocks for complex build scenarios. Where a feature is
+available in both tools, Lux implements it as a first-class citizen
+rather than delegating to an external tool.
+
+## Integrated tooling
+
+LuaRocks is a package manager in the traditional sense: it installs and
+builds rock packages. Everything else — linting, formatting, static
+analysis — is left to external tools that the user must discover,
+install, and configure separately.
+
+Lux integrates these tasks natively. Running `lx check` invokes
+`luacheck`, `lx format` runs `stylua`, and `lx check-types` drives the
+Lua language server — all without manually managing tool installations
+or `.luarc.json` configuration. Lux generates and updates the
+`.luarc.json` automatically as dependencies change, so IDE features
+work out of the box.
+
+This is a deliberate trade-off: integrated tooling reduces flexibility
+in exchange for a friction-free experience. Teams that need a specific
+linter version or a non-standard workflow can still configure tools
+independently; Lux does not interfere.
+
+## Reproducibility and safety
+
+Lux treats reproducibility as a core requirement, not an afterthought.
+
+Its lockfile includes integrity checks (content hashes) for every
+dependency, ensuring that `lux install` produces identical results
+across machines and over time. LuaRocks' lockfile support records
+version constraints only, which makes truly reproducible installs
+difficult without additional tooling.
+
+Version constraints are another area where Lux is stricter.
+LuaRocks allows arbitrary version strings. Lux enforces SemVer,
+interpreting anything beyond the third component as a pre-release or
+build identifier. This catches version mismatches early and makes
+dependency resolution more predictable.
+
+Sandboxing is applied when loading rockspecs and LuaRocks manifests,
+preventing malicious or malformed build files from affecting the host
+system. The sandbox uses [piccolo](https://github.com/kyren/piccolo),
+a safe Lua VM.
+
+## Workspace-oriented design
+
+Lux is designed around multi-project workspaces from the ground up.
+
+A single workspace can contain several projects that share a lockfile
+and dependency tree. Local and Git dependencies are first-class
+citizens — you can point to a directory or a Git URL without
+publishing to a registry. This makes Lux suitable for monorepos and
+for projects that are not yet ready for public release.
+
+LuaRocks is oriented around a single global tree or a single project
+tree. Features like vendoring sources for offline use, distributing
+entire install trees as archives, and building static binaries with
+all dependencies bundled are all natural extensions of Lux's
+workspace model.
+
+## What Lux does not implement
+
+LuaRocks supports rockspecs with CVS, Mercurial, SVN, and other SCM
+sources. Lux intentionally omits these on the principle of
+[YAGNI](https://martinfowler.com/bliki/Yagni.html): the overwhelming
+majority of Lua projects use Git or are published as release tarballs.
+Supporting additional VCS backends would add complexity with no
+practical benefit for the ecosystem.
+
+Lux does not support loading packages from multiple install trees —
+a feature LuaRocks provides for advanced runtime setups. This is
+tracked in [issue #1493](https://github.com/lumen-oss/lux/issues/1493)
+and may be revisited if a clear need emerges.
+
+## Feature comparison
+
+The table below summarizes the current state of both tools.
+
+| | Lux | LuaRocks v3.13.0 |
+|---|---|---|
+| **Project format** | TOML / Lua | Lua |
+| **Add/remove deps via CLI** | <Check /> | <Close /> |
+| **Parallel builds** | <Check /> | <Close /> |
+| **Lockfile with integrity checks** | <Check /> | basic |
+| **Run tests with busted** | <Check /> | <Check /> |
+| **Linting** | <Check /> | <Close /> |
+| **Code formatting** | <Check /> | <Close /> |
+| **Static type checking** | <Check /> | <Close /> |
+| **Automatic Lua detection** | <Check /> | <Close /> |
+| **Generate `.luarc.json`** | <Check /> | <Close /> |
+| **Default build specs** | <Check /> | <Check /> |
+| **Custom build backends** | <Check />¹ | <Check /> |
+| **`rust-mlua` build spec** | built-in | external |
+| **`treesitter-parser` build spec** | built-in | external |
+| **Prebuilt binary rocks** | <Check /> | <Check /> |
+| **Install multiple packages** | <Check /> | <Close /> |
+| **Version constraints** | <Check /> | <Close /> |
+| **`pkg-config` auto-detection** | <Check /> | <Close /> |
+| **Multi-version runtime** | <Check /> | <Check /> |
+| **Pack & upload binary rocks** | <Check /> | <Check /> |
+| **LuaRocks.org namespaces** | <Check /> | <Check /> |
+| **LuaRocks.org dev packages** | <Check /> | <Check /> |
+| **Versioning** | SemVer² | arbitrary |
+| **CVS/Mercurial/SVN sources** | <Close />³ | <Check /> |
+| **Multiple install trees** | <Close />⁴ | <Check /> |
+| **Git dependencies** | <Check /> | <Close /> |
+| **Local dependencies** | <Check /> | <Close /> |
+| **Multi-project workspaces** | <Check /> | <Close /> |
+| **Vendor sources** | <Check /> | <Close /> |
+| **Distribute install tree archives** | <Check /> | <Close /> |
+| **Distribute static binaries** | <Check /> | <Close /> |
+| **Full sandboxing** | <Check /> | <Close /> |
+
+1. Supported via a compatibility layer that uses LuaRocks as a backend.
+2. Mostly compatible with the LuaRocks version parser, which allows an arbitrary number of version components. To comply with SemVer, anything after the third version component (except for the specrev) is treated as a prerelease or build version.
+3. [You Aren't Gonna Need It](https://martinfowler.com/bliki/Yagni.html).
+4. [Issue #1493](https://github.com/lumen-oss/lux/issues/1493).

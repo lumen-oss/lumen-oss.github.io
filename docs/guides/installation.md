@@ -107,9 +107,24 @@ when using Lux on the command line.
 </TabItem>
 </Tabs>
 
-## Installing from source with Cargo
+## Building from source with Cargo
 
-Install with a Rust toolchain via Cargo:
+### Dependencies
+
+Building Lux from source requires:
+
+- A Rust toolchain (install via [rustup](https://rustup.rs/))
+- `gnupg`, `libgpg-error` and `gpgme` (on Unix-like systems)
+- If building without the `vendored` feature: `libgit2` and `openssl`
+- If building with the `vendored` feature: `perl`, `perl-core`, and `make`
+
+To link `gpgme` statically on Linux and macOS, set:
+
+```sh
+export SYSTEM_DEPS_LINK=static
+```
+
+### Install with Cargo
 
 Install through `cargo binstall` for fastest install times:
 
@@ -121,6 +136,28 @@ If you don't have `cargo binstall` installed, install Lux normally with:
 
 ```sh
 cargo install lux-cli --locked
+```
+
+### Build with vendored dependencies
+
+To statically link `libgit2` and `openssl`:
+
+```sh
+SYSTEM_DEPS_LINK=static cargo build --locked --profile release --features vendored
+```
+
+### Build without vendored dependencies
+
+```sh
+cargo build --locked --profile release
+```
+
+### Build on Windows (MSVC)
+
+The `gpgme` feature must be disabled on Windows:
+
+```sh
+cargo build --locked --profile release --no-default-features --features vendored
 ```
 
 :::important For new cargo users
@@ -144,6 +181,41 @@ Make sure that `~/.cargo/bin/` is part of your shell's `$PATH`!
 </TabItem>
 </Tabs>
 :::
+
+### For package maintainers
+
+To build `lux-lua` for a specific Lua version:
+
+```sh
+cargo xtask51 dist-lua  # Lua 5.1
+cargo xtask52 dist-lua  # Lua 5.2
+cargo xtask53 dist-lua  # Lua 5.3
+cargo xtask54 dist-lua  # Lua 5.4
+cargo xtask55 dist-lua  # Lua 5.5
+cargo xtaskjit dist-lua # LuaJIT
+```
+
+This installs `lux-lua` to `target/dist/share/lux-lua/<lua>/lux.so` and a
+`pkg-config` `.pc` file to `target/dist/lib/lux-lua*.pc`.
+
+To build shell completions:
+
+```sh
+cargo xtask dist-completions
+```
+
+To build man pages:
+
+```sh
+cargo xtask dist-man
+```
+
+To build the full binary distribution (bundled with completions, man pages,
+and `lux-lua` for all supported Lua versions):
+
+```sh
+cargo xtask dist-package
+```
 
 ## Verifying the installation
 
