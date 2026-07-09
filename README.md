@@ -50,7 +50,7 @@ The CI build uses `yarn install --frozen-lockfile`, so the lockfile must be kept
 
 1. Create a new `.md` file in `docs/guides/`.
 2. Write in imperative mood. Start each step with a verb.
-3. Minimise commentary. Do not explain concepts — link to explanations or reference instead.
+3. Minimise commentary. Do not explain concepts. Link to explanations or reference instead.
 4. Address a single, practical goal (e.g. "How to add a dependency").
 5. Add a `---` id in the front matter that matches the file name (without extension).
 6. Register the guide in `sidebars.js` under the `guides` category.

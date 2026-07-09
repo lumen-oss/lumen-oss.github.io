@@ -13,7 +13,7 @@ If not, see the [publishing guide](/guides/publishing).
 ## Manual version bump
 
 Update the `version` field in your `lux.toml` following [Semantic Versioning](https://semver.org).
-If you're not using a VCS, set the source archive manually — see the [lux.toml reference](/reference/lux-toml).
+If you're not using a VCS, set the source archive manually. See the [lux.toml reference](/reference/lux-toml) for details.
 
 ## Automatic version detection (VCS)
 

@@ -17,13 +17,13 @@ rather than delegating to an external tool.
 ## Integrated tooling
 
 LuaRocks is a package manager in the traditional sense: it installs and
-builds rock packages. Everything else — linting, formatting, static
-analysis — is left to external tools that the user must discover,
+builds rock packages. Everything else, linting, formatting, static
+analysis, is left to external tools that the user must discover,
 install, and configure separately.
 
 Lux integrates these tasks natively. Running `lx check` invokes
 `luacheck`, `lx format` runs `stylua`, and `lx check-types` drives the
-Lua language server — all without manually managing tool installations
+Lua language server, all without manually managing tool installations
 or `.luarc.json` configuration. Lux generates and updates the
 `.luarc.json` automatically as dependencies change, so IDE features
 work out of the box.
@@ -60,7 +60,7 @@ Lux is designed around multi-project workspaces from the ground up.
 
 A single workspace can contain several projects that share a lockfile
 and dependency tree. Local and Git dependencies are first-class
-citizens — you can point to a directory or a Git URL without
+citizens. You can point to a directory or a Git URL without
 publishing to a registry. This makes Lux suitable for monorepos and
 for projects that are not yet ready for public release.
 
@@ -79,8 +79,7 @@ majority of Lua projects use Git or are published as release tarballs.
 Supporting additional VCS backends would add complexity with no
 practical benefit for the ecosystem.
 
-Lux does not support loading packages from multiple install trees —
-a feature LuaRocks provides for advanced runtime setups. This is
+Lux does not support loading packages from multiple install trees, a feature LuaRocks provides for advanced runtime setups. This is
 tracked in [issue #1493](https://github.com/lumen-oss/lux/issues/1493)
 and may be revisited if a clear need emerges.
 

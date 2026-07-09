@@ -68,8 +68,8 @@ The site is divided into sections:
 
 ## You may also like
 
-- [LuaRocks](https://github.com/luarocks/luarocks) — The original Lua package manager.
-- [rocks.nvim](https://github.com/lumen-oss/rocks.nvim) — A Neovim plugin manager that uses LuaRocks under the hood, soon to be rewritten to use Lux.
+- [LuaRocks](https://github.com/luarocks/luarocks). The original Lua package manager.
+- [rocks.nvim](https://github.com/lumen-oss/rocks.nvim). A Neovim plugin manager that uses LuaRocks under the hood, soon to be rewritten to use Lux.
 
 ## Credits
 

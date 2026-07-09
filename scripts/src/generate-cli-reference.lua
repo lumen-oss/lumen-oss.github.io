@@ -371,7 +371,7 @@ title: CLI reference
   for _, opt in ipairs(global_options) do
     local desc = collapse_groff_glyphs(opt.description)
     if desc ~= "" then
-      out:write("- `" .. collapse_groff_glyphs(opt.flag) .. "` — " .. format_escaped(escape_mdx(desc)) .. "\n")
+      out:write("- `" .. collapse_groff_glyphs(opt.flag) .. "`: " .. format_escaped(escape_mdx(desc)) .. "\n")
     else
       out:write("- `" .. collapse_groff_glyphs(opt.flag) .. "`\n")
     end
@@ -403,7 +403,7 @@ title: CLI reference
       for _, sub in ipairs(help.subcommands) do
         local desc = sub.description:gsub("^%s+", ""):gsub("%s+$", "")
         if desc ~= "" then
-          out:write("- `" .. sub.name .. "` — " .. format_escaped(escape_mdx(desc)) .. "\n")
+          out:write("- `" .. sub.name .. "`: " .. format_escaped(escape_mdx(desc)) .. "\n")
         else
           out:write("- `" .. sub.name .. "`\n")
         end
@@ -416,7 +416,7 @@ title: CLI reference
       for _, opt in ipairs(help.options) do
         local desc = opt.description:gsub("^%s+", ""):gsub("%s+$", "")
         if desc ~= "" then
-          out:write("- `" .. opt.flag .. "` — " .. format_escaped(escape_mdx(desc)) .. "\n")
+          out:write("- `" .. opt.flag .. "`: " .. format_escaped(escape_mdx(desc)) .. "\n")
         else
           out:write("- `" .. opt.flag .. "`\n")
         end

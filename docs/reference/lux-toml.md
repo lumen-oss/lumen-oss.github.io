@@ -66,10 +66,10 @@ dev = "git+https://host.com/owner/$(PACKAGE).git"
 
 Variable substitutions:
 
-- `$(PACKAGE)` — package name
-- `$(VERSION)` — package version (from git tag if not declared)
-- `$(REF)` — git tag or revision (priority: SemVer tag, tag, commit SHA)
-- `$(<VAR_NAME>)` — any environment variable
+- `$(PACKAGE)`: package name
+- `$(VERSION)`: package version (from git tag if not declared)
+- `$(REF)`: git tag or revision (priority: SemVer tag, tag, commit SHA)
+- `$(<VAR_NAME>)`: any environment variable
 
 ## Dependencies
 
@@ -290,7 +290,7 @@ copy_directories = [ "plugin", "ftplugin" ]
 ```
 
 :::important
-Do not use `"lua"`, `"lib"`, or `"rock_manifest"` — they clash with LuaRocks.
+Do not use `"lua"`, `"lib"`, or `"rock_manifest"`. They clash with LuaRocks.
 :::
 
 ### Patches

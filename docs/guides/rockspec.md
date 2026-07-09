@@ -46,7 +46,7 @@ Lux prioritizes rockspec data over TOML. If both files define the same field (e.
 
 ## Clean up
 
-Remove fields from `extra.rockspec` that your TOML already covers. You can omit fields that would normally be required — Lux falls back to the TOML for anything not in the rockspec.
+Remove fields from `extra.rockspec` that your TOML already covers. You can omit fields that would normally be required. Lux falls back to the TOML for anything not in the rockspec.
 
 Example of a rockspec that only overrides the build table:
 

@@ -11,7 +11,7 @@ Push your code to a public Git forge repository and note its URL.
 
 ## Choosing a version
 
-Choose a [SemVer](https://semver.org/) version number. Set it in your `lux.toml` or create a git tag (with optional `v` prefix) — Lux will detect it automatically.
+Choose a [SemVer](https://semver.org/) version number. You can set it in your `lux.toml` or create a git tag with an optional `v` prefix. Lux detects the version automatically.
 
 ## Configuring a source URL
 
@@ -100,8 +100,7 @@ If you have 2FA enabled, pass a code from your authenticator app with `--tfa-cod
 lx upload --tfa-code "384562"
 ```
 
-Or, if you've configured `LUAROCKS_2FA_SECRET`, you don't need the flag —
-Lux will generate a code automatically.
+Or, if you've configured `LUAROCKS_2FA_SECRET`, you can omit the flag. Lux generates a code automatically.
 
 If you've configured `direnv`, you can omit the explicit `LUX_API_KEY`:
 

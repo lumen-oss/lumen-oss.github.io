@@ -17,7 +17,7 @@ building, formatting, linting, and more.
 The Lua API that Lux installs alongside your project's dependencies.
 It provides:
 
-- `lux.loader` — Resolves dependencies at runtime when a script calls `require`.
+- `lux.loader`: Resolves dependencies at runtime when a script calls `require`.
 - An API for embedding Lux into Lua applications.
 
 `lux-cli` uses `lux-lua` for commands like `lx lua`, `lx run`, and `lx path`.

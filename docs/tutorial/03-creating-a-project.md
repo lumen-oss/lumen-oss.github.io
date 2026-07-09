@@ -53,7 +53,7 @@ Inside of our project, you should see that a basic project skeleton was created:
     └── main.lua
 ```
 
-Lux reads `lux.toml` to understand your project -- its name, version,
+Lux reads `lux.toml` to understand your project: its name, version,
 dependencies, build instructions, and how to run it.
 Let's enter the file. You should see contents similar to the following:
 

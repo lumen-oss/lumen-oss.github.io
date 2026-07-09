@@ -56,7 +56,7 @@ jobs:
 ```
 
 Let's commit and push this to our repository. Once the workflow runs, we should see
-green checkmarks in the GitHub Actions tab — that means our tests passed on Linux and
+green checkmarks in the GitHub Actions tab. That means our tests passed on Linux and
 macOS for both Lua 5.1 and 5.4.
 
 :::important

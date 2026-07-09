@@ -114,7 +114,7 @@ Run `lx test` again:
 lx test
 ```
 
-You should see one test pass and one fail -- the second test expects the
+You should see one test pass and one fail. The second test expects the
 function to return `false` when the input doesn't contain "hello", but now
 it looks for "hi" instead. Change it back to `"hello"` and re-run to
 confirm both tests pass again.

@@ -11,10 +11,10 @@ title: Lua API reference
 The entry point to the Lua API is the [`LuxModule`](#class-luxmodule), returned by `require("lux")`.
 It exposes sub-modules for configuration, operations, projects, and workspaces:
 
-- `lux.config` — [`ConfigModule`](#class-configmodule)
-- `lux.operations` — [`OperationsModule`](#class-operationsmodule)
-- `lux.project` — [`ProjectModule`](#class-projectmodule)
-- `lux.workspace` — [`WorkspaceModule`](#class-workspacemodule)
+- `lux.config`: [`ConfigModule`](#class-configmodule)
+- `lux.operations`: [`OperationsModule`](#class-operationsmodule)
+- `lux.project`: [`ProjectModule`](#class-projectmodule)
+- `lux.workspace`: [`WorkspaceModule`](#class-workspacemodule)
 
 ## class LuxModule
 
