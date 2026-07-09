@@ -29,6 +29,16 @@ bun run build
 This builds the site with Docusaurus. Open `build/` in a browser or use
 `bun run start` for hot reload.
 
+### Update the lockfile
+
+If changing `package.json`, update the lockfile:
+
+```sh
+yarn install
+```
+
+The CI build uses `yarn install --frozen-lockfile`, so the lockfile must be kept in sync.
+
 ### Add a how-to guide
 
 1. Create a new `.md` file in `docs/guides/`.

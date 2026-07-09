@@ -45,6 +45,7 @@
           name = "devShell";
           buildInputs = with pkgs; [
             bun
+            yarn
             lux-cli
             lua
             groff
