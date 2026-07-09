@@ -31,6 +31,15 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        docsRouteBasePath: '/',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',

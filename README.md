@@ -29,6 +29,13 @@ bun run build
 This builds the site with Docusaurus. Open `build/` in a browser or use
 `bun run start` for hot reload.
 
+or, alternatively:
+
+```
+yarn build
+yarn serve
+```
+
 ### Update the lockfile
 
 If changing `package.json`, update the lockfile:
