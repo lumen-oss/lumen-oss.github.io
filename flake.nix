@@ -47,6 +47,7 @@
             bun
             yarn
             lux-cli
+            emmylua-doc-cli
             lua
             groff
             pandoc

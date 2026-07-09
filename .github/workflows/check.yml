@@ -31,3 +31,5 @@ jobs:
           popd
       - name: Dry-run CLI reference generator
         run: scripts/src/generate-cli-reference.lua
+      - name: Dry-run Lua API reference generator
+        run: scripts/src/generate-lua-api-reference.lua

@@ -1,5 +1,5 @@
 ---
-name: Update CLI reference
+name: Update reference
 
 on:
   schedule:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   generate:
-    name: Generate CLI reference
+    name: Generate reference
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,13 +22,17 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Generate CLI reference
         run: scripts/src/generate-cli-reference.lua
+      - name: Generate Lua API reference
+        run: scripts/src/generate-lua-api-reference.lua
       - uses: peter-evans/create-pull-request@v7
         with:
-          add-paths: docs/reference/cli.md
-          commit-message: "docs: update CLI reference"
-          title: "docs: update CLI reference"
+          add-paths: |
+            docs/reference/cli.md
+            docs/reference/lua-api.md
+          commit-message: "docs: update reference"
+          title: "docs: update reference"
           body: |
-            Automated update of the CLI reference from the latest man page.
-          branch: update-cli-reference
+            Automated update of the CLI and Lua API reference.
+          branch: update-reference
           delete-branch: true
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
