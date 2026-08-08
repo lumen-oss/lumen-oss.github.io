@@ -15,6 +15,7 @@ This section contains explanations for various topics related to `lux` and its a
 - [How Lux prevents package conflicts](/explanations/lux-package-conflicts)
 - [How Lux compares to LuaRocks](/explanations/lux-vs-luarocks)
 - [Architecture: lux-cli, lux-lua, and lux-lib](/explanations/architecture)
+- [How does Lux keep you safe?](/explanations/security)
 <!--- [What are lux trees?](/explanations/lux-trees-introduction)-->
 <!--- [How do lux trees work?](/explanations/lux-trees)-->
 <!--- [How are rocks loaded?](/explanations/lux-package-loading)-->

@@ -100,7 +100,7 @@ The table below summarizes the current state of both tools.
 | **Automatic Lua detection** | <Check /> | <Close /> |
 | **Generate `.luarc.json`** | <Check /> | <Close /> |
 | **Default build specs** | <Check /> | <Check /> |
-| **Custom build backends** | <Check />¹ | <Check /> |
+| **Custom build backends** | <Check />[^1] | <Check /> |
 | **`rust-mlua` build spec** | built-in | external |
 | **`treesitter-parser` build spec** | built-in | external |
 | **Prebuilt binary rocks** | <Check /> | <Check /> |
@@ -111,9 +111,9 @@ The table below summarizes the current state of both tools.
 | **Pack & upload binary rocks** | <Check /> | <Check /> |
 | **LuaRocks.org namespaces** | <Check /> | <Check /> |
 | **LuaRocks.org dev packages** | <Check /> | <Check /> |
-| **Versioning** | SemVer² | arbitrary |
-| **CVS/Mercurial/SVN sources** | <Close />³ | <Check /> |
-| **Multiple install trees** | <Close />⁴ | <Check /> |
+| **Versioning** | SemVer[^2] | arbitrary |
+| **CVS/Mercurial/SVN sources** | <Close />[^3] | <Check /> |
+| **Multiple install trees** | <Close />[^4] | <Check /> |
 | **Git dependencies** | <Check /> | <Close /> |
 | **Local dependencies** | <Check /> | <Close /> |
 | **Multi-project workspaces** | <Check /> | <Close /> |
@@ -121,8 +121,10 @@ The table below summarizes the current state of both tools.
 | **Distribute install tree archives** | <Check /> | <Close /> |
 | **Distribute static binaries** | <Check /> | <Close /> |
 | **Full sandboxing** | <Check /> | <Close /> |
+| **Sandbox build execution** | <Check />[^5] | <Close /> |
 
-1. Supported via a compatibility layer that uses LuaRocks as a backend.
-2. Mostly compatible with the LuaRocks version parser, which allows an arbitrary number of version components. To comply with SemVer, anything after the third version component (except for the specrev) is treated as a prerelease or build version.
-3. [You Aren't Gonna Need It](https://martinfowler.com/bliki/Yagni.html).
-4. [Issue #1493](https://github.com/lumen-oss/lux/issues/1493).
+[^1]: Supported via a compatibility layer that uses LuaRocks as a backend.
+[^2]: Mostly compatible with the LuaRocks version parser, which allows an arbitrary number of version components. To comply with SemVer, anything after the third version component (except for the specrev) is treated as a prerelease or build version.
+[^3]: [You Aren't Gonna Need It](https://martinfowler.com/bliki/Yagni.html).
+[^4]: [Issue #1493](https://github.com/lumen-oss/lux/issues/1493).
+[^5]: Opt-in, via the `[build.runner]` config.
