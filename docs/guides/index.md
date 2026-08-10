@@ -22,5 +22,8 @@ Want to get better at using Lux? Look no further than this set of guides.
 - [How to test a Lua project](/guides/testing)
 - [How to format and lint a Lua project](/guides/formatting-linting)
 
+## Security
+- [How to sandbox package builds](/guides/sandboxing-builds)
+
 ## External Tooling
 - [How to use Neovim with Lux](/guides/neovim)
