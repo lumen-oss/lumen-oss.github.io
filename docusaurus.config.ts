@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Lux',
-  tagline: 'A luxurious package manager for Lua',
+  tagline: 'A luxurious package manager for Lua and Luau',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

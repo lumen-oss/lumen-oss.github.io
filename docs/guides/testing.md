@@ -5,6 +5,11 @@ title: How to test a Lua project
 
 This guide shows you how to set up and run tests for a Lua project.
 
+:::note
+For Luau projects, `lx test` uses the [tiniest](https://github.com/dphfox/tiniest) framework by default. See [How to use Luau with Lux](/guides/luau).
+:::
+
+
 ## Creating spec files
 
 Specify the test backend in your `lux.toml`:

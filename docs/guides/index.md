@@ -10,6 +10,7 @@ Want to get better at using Lux? Look no further than this set of guides.
 
 ## Getting Started
 - [How to install Lux](/guides/installation)
+- [How to use Luau with Lux](/guides/luau)
 
 ## Maintenance
 - [How to publish a Lua project](/guides/publishing)
