@@ -50,6 +50,10 @@ lx lint
 
 See `lx lint --help` for available options.
 
+:::note
+For Luau projects, `lx lint` and `lx check` run [luau-analyze](https://luau.org/analyze).
+:::
+
 ## Git Hooks
 
 To run checks, lints, and formatting before each commit, create a

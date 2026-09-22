@@ -9,13 +9,13 @@ sidebar_position: 1
 Welcome to the official `lux` documentation.
 
 Here you will find all sorts of resources ready to get you
-started on your Lua journey!
+started on your Lua and Luau journey!
 
 ## What is Lux?
 
-`lux` is a package manager for [Lua](https://lua.org). Its purpose is to manage
+`lux` is a package manager for [Lua](https://lua.org) and [Luau](https://luau.org). Its purpose is to manage
 Lua projects, dependencies, build scripts and more for you, so you
-can focus on writing and shipping Lua code.
+can focus on writing and shipping Lua and Luau code.
 
 :::info
 
@@ -44,7 +44,7 @@ Lux is fully functional, but does not have a `1.0` release yet.
 
 #### Lua Versioning Done Easy
 
-- Automatically detects and installs the right Lua version for your project (5.1 through 5.5, LuaJIT).
+- Automatically detects and installs the right Lua version for your project (5.1 through 5.5, LuaJIT, and Luau).
 
 #### Advanced Lockfile Support
 

@@ -100,6 +100,7 @@ library = "ssl"
 
 Operators: `==`, `~=`, `<`, `>`, `<=`, `>=`, `~>`. `~> 2` means `>= 2, < 3`.
 Absence of an operator is equivalent to `==`. Version requirements are mandatory.
+Set `lua = "luau"` to build and run the project with [Luau](https://luau.org).
 
 ### Git dependencies
 
@@ -164,6 +165,12 @@ defines = [ "FOO=bar", "USE_BLA" ]
 incdirs = [ ]
 libdirs = [ ]
 ```
+
+:::note
+For Luau projects, the `builtin` backend auto-detects `.luau` modules. Native
+dependencies are not supported. Luau modules are transpiled to Lua when the
+project targets a Lua runtime. See [How Lux supports Luau](/explanations/luau-support).
+:::
 
 ### `make`
 
@@ -331,6 +338,17 @@ flags = [ ]
 
 Currently broken on macOS and Windows. Defaults to `busted-nlua` if a `.busted` file exists
 or `busted` and `nlua` are `test_dependencies`, and no test backend is specified.
+
+### `tiniest`
+
+Runs tests with the [tiniest](https://github.com/dphfox/tiniest) framework.
+
+```toml
+[test]
+type = "tiniest"
+```
+
+The default test framework for Luau projects.
 
 ### `command`
 
