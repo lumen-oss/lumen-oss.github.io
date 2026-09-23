@@ -42,3 +42,8 @@ When a Luau package is installed for a Lua runtime, Lux transpiles it:
 - `require` paths are flattened to Lua module names.
 
 `task.*` and `buffer.*` are not supported when transpiling.
+
+## Roblox
+
+Lux can arrange installed packages in a Rojo-servable layout. See
+[How Lux supports Roblox](/explanations/rojo-support).
