@@ -79,3 +79,8 @@ lx check
 
 Lux transpiles Luau packages to Lua when they are installed for a Lua runtime, so a
 Lua project can depend on them. Native dependencies are not supported in this case.
+
+## Use packages in a Roblox project
+
+See [How to use Lux packages in a Roblox project](/guides/rojo) to build a
+Rojo-servable `Packages/` layout with `lx build --preset rojo`.
