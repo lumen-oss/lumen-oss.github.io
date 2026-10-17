@@ -37,7 +37,7 @@ jobs:
       matrix:
         job:
           - { os: ubuntu-24.04, target: x86_64-linux }
-          - { os: macos-14, target: aarch64-darwin }
+          - { os: macos-15, target: aarch64-darwin }
         lua_version:
           - 5.1
           - 5.4
