@@ -12,6 +12,7 @@ This section contains explanations for various topics related to `lux` and its a
 ## Table of Contents
 
 - [What is a lua package?](/explanations/lua-packages)
+- [How Lux supports Luau](/explanations/luau-support)
 - [How Lux prevents package conflicts](/explanations/lux-package-conflicts)
 - [How Lux compares to LuaRocks](/explanations/lux-vs-luarocks)
 - [Architecture: lux-cli, lux-lua, and lux-lib](/explanations/architecture)

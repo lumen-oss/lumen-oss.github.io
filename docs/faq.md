@@ -51,8 +51,8 @@ system.
 ## Does Lux support Lua dialects like Teal or Luau?
 
 Lux supports [Teal](https://github.com/teal-language/tl) in the same
-way that LuaRocks does. Support for [Luau](https://luau-lang.org/)
-is on the roadmap.
+way that LuaRocks does. [Luau](https://luau.org) is supported natively:
+see [How to use Luau with Lux](/guides/luau).
 
 ## How do I set up `LUA_PATH` and `LUA_CPATH`?
 
