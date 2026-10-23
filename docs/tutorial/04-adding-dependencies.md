@@ -25,6 +25,11 @@ Added argparse 0.7.1
 This may take a while depending on your internet connection!
 :::
 
+:::tip
+To avoid hitting rate limits on hosts
+like GitHub, see [How to configure access tokens](/guides/access-tokens).
+:::
+
 ## Testing Our Changes
 
 To check whether `argparse` is loaded, we can enter a Lua REPL and play around

@@ -19,6 +19,9 @@ Want to get better at using Lux? Look no further than this set of guides.
 - [How to use Lux with a rockspec file](/guides/rockspec)
 - [How to declare a workspace with multiple projects](/guides/multi-project-workspaces)
 
+## Configuration
+- [How to configure access tokens](/guides/access-tokens)
+
 ## Code Hygiene
 - [How to test a Lua project](/guides/testing)
 - [How to format and lint a Lua project](/guides/formatting-linting)
