@@ -28,3 +28,4 @@ Want to get better at using Lux? Look no further than this set of guides.
 
 ## External Tooling
 - [How to use Neovim with Lux](/guides/neovim)
+- [How to use Lux packages in a Roblox project](/guides/rojo)
