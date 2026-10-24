@@ -48,7 +48,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.35.2
+          version: 0.49.0
 
       - name: Run tests
         run: |
@@ -181,7 +181,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.8
+          version: 0.49.0
 
       - name: Upload
         run: |

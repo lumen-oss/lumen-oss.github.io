@@ -35,3 +35,5 @@ jobs:
         run: scripts/src/generate-lua-api-reference.lua
       - name: Dry-run schema reference generator
         run: scripts/src/generate-schema-reference.lua
+      - name: Dry-run Lux version updater
+        run: scripts/src/update-lux-version.lua
