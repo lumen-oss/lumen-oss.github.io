@@ -95,7 +95,7 @@ argparse = "=0.7"
 type = "builtin"
 ```
 
-See the [source schema](/reference/lux-toml-schema#source) for all fields.
+See the [source schema](/reference/lux-toml#source) for all fields.
 
 ## Publishing
 

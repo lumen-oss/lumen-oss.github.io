@@ -1,10 +1,11 @@
 ---
 id: config
+title: config.toml reference
 ---
 
 <!-- This file is auto-generated from the Lux schema. Do not edit manually. -->
 <!-- Regenerate with: scripts/src/generate-schema-reference.lua -->
-<!-- Generated from lux-cli 0.49.0 -->
+<!-- Generated from lux-cli 0.49.1 -->
 
 # config.toml
 

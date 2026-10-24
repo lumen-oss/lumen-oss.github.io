@@ -35,18 +35,24 @@ local function escape_mdx(text)
   end))
 end
 
----@param id string
 ---@param body string
----@param version string
 ---@param see_also string
 ---@return string
-local function render_page(id, body, version, see_also)
-  body = escape_mdx(body)
+local function insert_see_also(body, see_also)
   local heading, rest = body:match("^(# [^\n]+\n\n)(.*)$")
-  body = (heading or "") .. see_also .. "\n\n" .. (rest or body)
+  return (heading or "") .. see_also .. "\n\n" .. (rest or body)
+end
+
+---@param id string
+---@param title string
+---@param body string
+---@param version string
+---@return string
+local function render_page(id, title, body, version)
   return string.format(
     [[---
 id: %s
+title: %s
 ---
 
 <!-- This file is auto-generated from the Lux schema. Do not edit manually. -->
@@ -56,8 +62,9 @@ id: %s
 %s
 ]],
     id,
+    title,
     version,
-    body
+    escape_mdx(body)
   )
 end
 
@@ -74,14 +81,15 @@ local function generate_markdown_pages(version)
   local pages = {
     {
       kind = "lux-toml",
-      id = "lux-toml-schema",
-      output = "docs/reference/lux-toml-schema.md",
-      see_also = [[See also the [lux.toml reference](/reference/lux-toml).
-Download the [JSON Schema](/schemas/lux-toml.schema.json).]],
+      id = "lux-toml",
+      title = "lux.toml reference",
+      output = "docs/reference/lux-toml.md",
+      see_also = "Download the [JSON Schema](/schemas/lux-toml.schema.json).",
     },
     {
       kind = "config",
       id = "config",
+      title = "config.toml reference",
       output = "docs/reference/config.md",
       see_also = "Download the [JSON Schema](/schemas/config.schema.json).",
     },
@@ -89,7 +97,10 @@ Download the [JSON Schema](/schemas/lux-toml.schema.json).]],
   for _, page in ipairs(pages) do
     local body = schema(page.kind, "text")
     assert(body and body ~= "", "Failed to generate schema for " .. page.kind)
-    write_file(page.output, render_page(page.id, body, version, page.see_also))
+    write_file(
+      page.output,
+      render_page(page.id, page.title, insert_see_also(body, page.see_also), version)
+    )
     print("Generated: " .. page.output)
   end
 end

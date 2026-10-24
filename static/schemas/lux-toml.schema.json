@@ -1,20 +1,22 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "lux.toml",
-  "description": "The TOML manifest for a Lux project.",
+  "description": "The TOML manifest for a Lux project.\n\n`lux.toml` is a subset of the [Lua rockspec format](https://github.com/luarocks/luarocks/blob/main/docs/rockspec_format.md),\nwith some simplifications, represented in TOML.\nIt does not support advanced specifications like platform overrides.\nThose can be declared with an [`extra.rockspec`](https://lux.lumen-labs.org/guides/rockspec).",
   "type": "object",
   "properties": {
     "package": {
-      "description": "The name of the rock.",
-      "$ref": "#/$defs/PackageName"
+      "description": "The name of the rock. Lux converts it to lower case when publishing.",
+      "$ref": "#/$defs/PackageName",
+      "x-lux-toml-example": "package = \"my-lua-project\""
     },
     "version": {
-      "description": "The package version. If unset, Lux derives it from the current SemVer\ngit tag, falling back to \"dev\".",
+      "description": "The package version. If unset, Lux derives it from the current SemVer\ngit tag (optional `v` prefix), falling back to \"dev\".\n\nVersions like `1.0` are corrected to `1.0.0`.\nNon-SemVer versions (e.g. `1.0-rc1` instead of `1.0.0-rc1`) are treated\nas Dev versions and cannot be compared with SemVer versions.",
       "type": "string",
-      "default": null
+      "default": null,
+      "x-lux-toml-example": "version = \"1.0.0\""
     },
     "build": {
-      "description": "How to build the project. See the build backend fields below.",
+      "description": "How to build the project. See the build backend fields below.\n\nRocks with C sources require a C compiler. Lux does not bundle one.",
       "$ref": "#/$defs/BuildSpecInternal"
     },
     "rockspec_format": {
@@ -26,7 +28,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "x-lux-toml-example": "rockspec_format = \"3.0\""
     },
     "run": {
       "description": "How to run the project with `lx run`.",
@@ -37,14 +40,16 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "x-lux-toml-example": "\n[run]\nargs = [\"src/main.lua\"]\n"
     },
     "lua": {
-      "description": "The Lua version requirement, e.g. \">= 5.1\". Required to build a rockspec.",
+      "description": "The Lua version requirement, e.g. \">= 5.1\". Required to build a rockspec.\nSet to \"luau\" to build and run the project with Luau.",
       "type": [
         "string",
         "null"
-      ]
+      ],
+      "x-lux-toml-example": "lua = \">=5.1\""
     },
     "description": {
       "description": "Metadata published to LuaRocks.",
@@ -55,7 +60,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "x-lux-toml-example": "\n[description]\nsummary = \"A one-line description of the package\"\ndetailed = \"\"\"\nA longer description of the package\nthat often spans multiple lines.\n\"\"\"\nlicense = \"GPLv2\"\nhomepage = \"https://lumen-oss.github.io\"\nissues_url = \"https://github.com/lumen-oss/lux/issues\"\nmaintainer = \"neorocks org\"\nlabels = [\"neovim\", \"tls\", \"https\"]\n"
     },
     "supported_platforms": {
       "description": "Platforms this rock supports, mapping platform identifiers to `true` or\n`false` (e.g. `linux = true`).",
@@ -66,17 +72,19 @@
       "additionalProperties": {
         "type": "boolean"
       },
-      "default": null
+      "default": null,
+      "x-lux-toml-example": "\n[supported_platforms]\nlinux = true\nwindows = false\n"
     },
     "dependencies": {
-      "description": "Runtime Lua dependencies, mapping package names to a version requirement\n(e.g. `foo = \"1.0\"`) or to a detailed table with `version`, `opt`, `pin`,\n`git`, `rev`, and `path` keys.",
+      "description": "Runtime Lua dependencies, mapping package names to a version requirement\n(e.g. `foo = \"1.0\"`) or to a detailed table with `version`, `opt`, `pin`,\n`git`, `rev`, and `path` keys.\n\nVersion requirements support the operators `==`, `~=`, `<`, `>`, `<=`,\n`>=`, and `~>`. `~> 2` means `>= 2, < 3`. An operator is optional;\nwithout one, the requirement is treated as `==`. Version requirements\nare mandatory.\n\nDependencies are declared under `lua`, `[dependencies]`,\n`[build_dependencies]`, `[test_dependencies]`, and\n`[external_dependencies]`.\n\nGit dependencies support the `github:` (default), `gitlab:`,\n`codeberg:`, and `sourcehut:` shorthands, as well as full HTTPS and SSH\nURLs. If `rev` is unset, `version` is used as the commit SHA or tag.\nLux searches the repository root for a `lux.toml` or `.rockspec` to\ndetermine the build specification, defaulting to `builtin` if none is\nfound. Rocks with git dependencies cannot be published to LuaRocks. Git\ndependencies that require a custom LuaRocks build backend are not\nsupported.",
       "type": [
         "object",
         "null"
       ],
       "additionalProperties": {
         "$ref": "#/$defs/DependencyEntry"
-      }
+      },
+      "x-lux-toml-example": "\n[dependencies]\nluafilesystem = \"1.0.0\"\n\n[dependencies.argparse]\nversion = \"0.7\"\nopt = true\n\n[dependencies.foo]\nversion = \"09511782201302ade916d4b250d01a6c61b56844\"\ngit = \"github:lunarmodules/foo\"\n\n[dependencies.bar]\npath = \"../bar\"\nversion = \"1.0.0\"\n"
     },
     "build_dependencies": {
       "description": "Dependencies needed at build time. Same syntax as `dependencies`.",
@@ -96,7 +104,8 @@
       ],
       "additionalProperties": {
         "$ref": "#/$defs/ExternalDependencySpec"
-      }
+      },
+      "x-lux-toml-example": "\n[external_dependencies.OPENSSL]\nheader = \"openssl/ssl.h\"\nlibrary = \"ssl\"\n"
     },
     "test_dependencies": {
       "description": "Dependencies needed when running `lx test`. Same syntax as `dependencies`.",
@@ -106,10 +115,11 @@
       ],
       "additionalProperties": {
         "$ref": "#/$defs/DependencyEntry"
-      }
+      },
+      "x-lux-toml-example": "\n[test_dependencies]\nbusted = \">=2.0.0\"\nnlua = \"~>0.3\"\n"
     },
     "source": {
-      "description": "Templates for generating the source URL of a release.",
+      "description": "Templates for generating the source URL of a release.\n\nVariable substitutions:\n- `$(PACKAGE)`: package name\n- `$(VERSION)`: package version (from the git tag if not declared)\n- `$(REF)`: git tag or revision (priority: SemVer tag, tag, commit SHA)\n- `$(<VAR_NAME>)`: any environment variable",
       "$ref": "#/$defs/RockSourceTemplate",
       "default": {
         "url": null,
@@ -118,10 +128,11 @@
         "dir": null,
         "tag": null,
         "branch": null
-      }
+      },
+      "x-lux-toml-example": "\n[source]\nurl = \"https://host.com/owner/$(PACKAGE)/archive/refs/tags/$(REF).zip\"\ndev = \"git+https://host.com/owner/$(PACKAGE).git\"\n"
     },
     "test": {
-      "description": "How to run the test suite with `lx test`.",
+      "description": "How to run the test suite with `lx test`.\n\nThe `busted` backend is used when a `.busted` file exists and no backend\nis specified. `busted-nlua` is used when a `.busted` file exists or\n`busted` and `nlua` are `test_dependencies`. The `busted-nlua` backend is\ncurrently broken on macOS and Windows. Luau projects default to `tiniest`.",
       "anyOf": [
         {
           "$ref": "#/$defs/TestSpecInternal"
@@ -129,7 +140,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "x-lux-toml-example": "\n[test]\ntype = \"busted\"\nflags = []\n"
     },
     "deploy": {
       "description": "Additional install and deployment options.",
@@ -140,11 +152,13 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "x-lux-toml-example": "\n[deploy]\nwrap_bin_scripts = false\n"
     },
     "project": {
       "description": "Lux-specific project settings, ignored when generating a rockspec.",
-      "$ref": "#/$defs/ProjectSpec"
+      "$ref": "#/$defs/ProjectSpec",
+      "x-lux-toml-example": "\n[project]\nroot_dir = \"..\"\n"
     }
   },
   "required": [
@@ -159,11 +173,12 @@
       "type": "object",
       "properties": {
         "type": {
-          "description": "The build backend to use: \"builtin\", \"make\", \"cmake\",\n\"command\", \"none\", \"rust-mlua\", \"rust-binary\", or \"treesitter-parser\".\nAny other value is treated as a custom LuaRocks build backend.\nDefault: \"builtin\".",
+          "description": "The build backend to use: \"builtin\", \"make\", \"cmake\",\n\"command\", \"none\", \"rust-mlua\", \"rust-binary\", or \"treesitter-parser\".\nAny other value is treated as a custom LuaRocks build backend.\nDefault: \"builtin\".\n\n`make` requires Make, `cmake` requires CMake, and `rust-mlua`/`rust-binary`\nrequire a Rust toolchain. Set `type = \"none\"` to copy source files\nwithout building.\n\nFor Luau projects, `builtin` auto-detects `.luau` modules. Native\ndependencies are not supported. Luau modules are transpiled to Lua when\nthe project targets a Lua runtime.",
           "type": [
             "string",
             "null"
-          ]
+          ],
+          "x-lux-toml-example": "\n[build]\ntype = \"builtin\"\n"
         },
         "modules": {
           "description": "Modules to build, mapping module names (as used by `require`) to a source\npath, a list of C sources, or a table with `sources`, `libraries`,\n`defines`, `incdirs`, and `libdirs`.",
@@ -173,7 +188,8 @@
           ],
           "additionalProperties": {
             "$ref": "#/$defs/ModuleSpec"
-          }
+          },
+          "x-lux-toml-example": "\n[build.modules]\n\"foo.main\" = \"lua/foo.lua\"\n\"foo.bla\" = [\"src/bla.c\"]\n\n[build.modules.\"foo.core\"]\nsources = [\"src/core.c\", \"src/extra.c\"]\nlibraries = [\"ssl\"]\ndefines = [\"FOO=bar\", \"USE_BLA\"]\nincdirs = []\nlibdirs = []\n"
         },
         "makefile": {
           "description": "Makefile to use. Default: \"Makefile\" (\"Makefile.win\" on Windows).",
@@ -181,7 +197,8 @@
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build]\ntype = \"make\"\nmakefile = \"Makefile\"\nbuild_target = \"\"\nbuild_pass = true\ninstall_target = \"install\"\ninstall_pass = true\nbuild_variables = {}\ninstall_variables = {}\nvariables = {}\n"
         },
         "build_target": {
           "description": "Target passed to `make` during the build pass. Default: empty.",
@@ -249,12 +266,13 @@
           "default": null
         },
         "cmake": {
-          "description": "Contents of the generated \"CMakeLists.txt\". If unset, the project's own\nfile is used.",
+          "description": "Contents of the generated \"CMakeLists.txt\". If unset, the project's own\nfile is used.\n\nEnvironment variables: `CMAKE_MODULE_PATH`, `CMAKE_INCLUDE_PATH`,\n`CMAKE_LIBRARY_PATH`.",
           "type": [
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build]\ntype = \"cmake\"\ncmake = \"\"\"\n<content>\n\"\"\"\n"
         },
         "build_command": {
           "description": "Command to run to build the package.",
@@ -262,7 +280,8 @@
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build]\ntype = \"command\"\nbuild_command = \"make\"\ninstall_command = \"make install\"\n"
         },
         "install_command": {
           "description": "Command to run to install the package.",
@@ -281,7 +300,8 @@
             {
               "type": "null"
             }
-          ]
+          ],
+          "x-lux-toml-example": "\n[build.install.lua]\n\"foo.bar\" = \"src/bar.lua\"\n\n[build.install.lib]\n\"foo.bar\" = \"lib/bar.so\"\n\n[build.install.conf]\n\n[build.install.bin]\n"
         },
         "copy_directories": {
           "description": "Directories in the source tree to copy as-is into the rock's \"etc\" tree.\nDo not use \"lua\", \"lib\", \"rock_manifest\", or the rockspec file name.",
@@ -292,10 +312,11 @@
           "items": {
             "type": "string"
           },
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build]\ncopy_directories = [\"plugin\", \"ftplugin\"]\n"
         },
         "patches": {
-          "description": "Patches to apply before building, mapping file names to patch contents.\nLux accepts any format supported by the [`diffy`](https://docs.rs/diffy/latest/diffy/) crate.",
+          "description": "Patches to apply before building, mapping file names to patch contents.\nLux accepts any format supported by the [`diffy`](https://docs.rs/diffy/latest/diffy/) crate.\nLuaRocks only supports unified diff.",
           "type": [
             "object",
             "null"
@@ -303,7 +324,8 @@
           "additionalProperties": {
             "type": "string"
           },
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build.patches]\n\"lua51-support.diff\" = \"\"\"\n--- old/mymodule.c....\n\"\"\"\n"
         },
         "target_path": {
           "description": "The cargo target directory, if it is not `<source>/target`.",
@@ -311,7 +333,8 @@
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build]\ntype = \"rust-mlua\"\ntarget_path = \"target\"\ndefault_features = false\nfeatures = []\ncargo_extra_args = []\n\n[build.modules]\n\"foo.main\" = \"alt_name\"\n\n[build.include]\n\"relative/path/to/file.lua\" = \"target-file.lua\"\n"
         },
         "default_features": {
           "description": "Whether to build a cargo package with default features. Default: `true`.",
@@ -366,7 +389,8 @@
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[build]\ntype = \"treesitter-parser\"\nlang = \"haskell\"\nparser = true\ngenerate = true\nlocation = \"libs/tree-sitter-haskell\"\n\n[build.queries.\"highlights.scm\"] = \"\"\"\n(signature\n  name: (variable) @function)\n\"\"\"\n"
         },
         "parser": {
           "description": "Whether to build the tree-sitter parser. Set to `false` for query-only packages.\nDefault: `false`.",
@@ -614,25 +638,25 @@
       "type": "object",
       "properties": {
         "version": {
-          "description": "The version requirement, e.g. \"1.0\".",
+          "description": "The version requirement, e.g. \"1.0\".\nSupports the same operators as `dependencies`.",
           "type": "string"
         },
         "opt": {
-          "description": "Whether the dependency is optional.",
+          "description": "Whether the dependency is optional. Default: `false`.",
           "type": [
             "boolean",
             "null"
           ]
         },
         "pin": {
-          "description": "Whether the dependency should be pinned.",
+          "description": "Whether the dependency should be pinned. Default: `false`.",
           "type": [
             "boolean",
             "null"
           ]
         },
         "git": {
-          "description": "A git source. Supported shorthands: \"github:owner/repo\" (default if the\nprefix is omitted), \"gitlab:owner/repo\", \"codeberg:owner/repo\", and\n\"sourcehut:owner/repo\". Full HTTPS and SSH URLs are also accepted.",
+          "description": "A git source. Supported shorthands: \"github:owner/repo\" (default if the\nprefix is omitted), \"gitlab:owner/repo\", \"codeberg:owner/repo\", and\n\"sourcehut:owner/repo\". Full HTTPS and SSH URLs are also accepted.\nIf `rev` is unset, `version` is used as the commit SHA or tag.\nGit dependencies cannot be published to LuaRocks.",
           "type": [
             "string",
             "null"
@@ -757,7 +781,8 @@
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[test]\ntype = \"command\"\ncommand = \"make\"\nflags = [\"test\"]\n"
         },
         "script": {
           "description": "Lua script to run as the test suite. Mutually exclusive with `command`.",
@@ -765,7 +790,8 @@
             "string",
             "null"
           ],
-          "default": null
+          "default": null,
+          "x-lux-toml-example": "\n[test]\ntype = \"script\"\nscript = \"tests.lua\"\nflags = []\n"
         }
       }
     },

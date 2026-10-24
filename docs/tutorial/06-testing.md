@@ -89,7 +89,7 @@ Add this to the bottom of your `lux.toml`:
 type = "busted"
 ```
 
-See the [test schema](/reference/lux-toml-schema#test) for all backends.
+See the [test schema](/reference/lux-toml#test) for all backends.
 
 ## Running the Tests
 

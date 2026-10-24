@@ -72,4 +72,4 @@ Lux resolves the token for a host in this order:
 ## Git dependencies
 
 The same tokens are used for git-over-HTTPS authentication when fetching
-[git dependencies](/reference/lux-toml#git-dependencies).
+[git dependencies](/reference/lux-toml#dependencies).

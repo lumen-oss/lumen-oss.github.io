@@ -34,7 +34,7 @@ jobs:
             docs/reference/cli.md
             docs/reference/lua-api.md
             docs/reference/config.md
-            docs/reference/lux-toml-schema.md
+            docs/reference/lux-toml.md
             static/schemas/config.schema.json
             static/schemas/lux-toml.schema.json
             docs/tutorial/09-ci-cd.md
