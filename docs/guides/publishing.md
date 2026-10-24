@@ -44,6 +44,8 @@ or any environment variable via `$(VAR_NAME)`.
 The `dev` URL must use the `git+https://` protocol to instruct Lux to use `git`.
 :::
 
+See the [source schema](/reference/lux-toml-schema#source) for all fields.
+
 ## Acquiring an API key
 
 You can find your API key by logging into your account on

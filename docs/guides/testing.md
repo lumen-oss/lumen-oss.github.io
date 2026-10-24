@@ -98,4 +98,4 @@ The embedded Lua interpreter must support dynamic module loading. Some `pandoc` 
 
 ## Alternate test backends
 
-See the [test section in the lux.toml reference](/reference/lux-toml#test) for supported backends.
+See the [test schema](/reference/lux-toml-schema#test) for supported backends.

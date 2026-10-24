@@ -1,0 +1,806 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "lux.toml",
+  "description": "The TOML manifest for a Lux project.",
+  "type": "object",
+  "properties": {
+    "package": {
+      "description": "The name of the rock.",
+      "$ref": "#/$defs/PackageName"
+    },
+    "version": {
+      "description": "The package version. If unset, Lux derives it from the current SemVer\ngit tag, falling back to \"dev\".",
+      "type": "string",
+      "default": null
+    },
+    "build": {
+      "description": "How to build the project. See the build backend fields below.",
+      "$ref": "#/$defs/BuildSpecInternal"
+    },
+    "rockspec_format": {
+      "description": "The LuaRocks rockspec format version to write to the generated rockspec (\"1.0\", \"2.0\", or \"3.0\").\nDefault: \"3.0\".",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RockspecFormat"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "run": {
+      "description": "How to run the project with `lx run`.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RunSpec"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "lua": {
+      "description": "The Lua version requirement, e.g. \">= 5.1\". Required to build a rockspec.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "description": "Metadata published to LuaRocks.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RockDescription"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "supported_platforms": {
+      "description": "Platforms this rock supports, mapping platform identifiers to `true` or\n`false` (e.g. `linux = true`).",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "default": null
+    },
+    "dependencies": {
+      "description": "Runtime Lua dependencies, mapping package names to a version requirement\n(e.g. `foo = \"1.0\"`) or to a detailed table with `version`, `opt`, `pin`,\n`git`, `rev`, and `path` keys.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/DependencyEntry"
+      }
+    },
+    "build_dependencies": {
+      "description": "Dependencies needed at build time. Same syntax as `dependencies`.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/DependencyEntry"
+      }
+    },
+    "external_dependencies": {
+      "description": "System (C/FFI) dependencies, discovered via pkg-config. Each entry may\nset `header` and/or `library`.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/ExternalDependencySpec"
+      }
+    },
+    "test_dependencies": {
+      "description": "Dependencies needed when running `lx test`. Same syntax as `dependencies`.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/DependencyEntry"
+      }
+    },
+    "source": {
+      "description": "Templates for generating the source URL of a release.",
+      "$ref": "#/$defs/RockSourceTemplate",
+      "default": {
+        "url": null,
+        "dev": null,
+        "file": null,
+        "dir": null,
+        "tag": null,
+        "branch": null
+      }
+    },
+    "test": {
+      "description": "How to run the test suite with `lx test`.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TestSpecInternal"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "deploy": {
+      "description": "Additional install and deployment options.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DeploySpec"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "project": {
+      "description": "Lux-specific project settings, ignored when generating a rockspec.",
+      "$ref": "#/$defs/ProjectSpec"
+    }
+  },
+  "required": [
+    "package"
+  ],
+  "$defs": {
+    "PackageName": {
+      "description": "A luarocks package name, which is always lowercase",
+      "type": "string"
+    },
+    "BuildSpecInternal": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The build backend to use: \"builtin\", \"make\", \"cmake\",\n\"command\", \"none\", \"rust-mlua\", \"rust-binary\", or \"treesitter-parser\".\nAny other value is treated as a custom LuaRocks build backend.\nDefault: \"builtin\".",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modules": {
+          "description": "Modules to build, mapping module names (as used by `require`) to a source\npath, a list of C sources, or a table with `sources`, `libraries`,\n`defines`, `incdirs`, and `libdirs`.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "$ref": "#/$defs/ModuleSpec"
+          }
+        },
+        "makefile": {
+          "description": "Makefile to use. Default: \"Makefile\" (\"Makefile.win\" on Windows).",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "build_target": {
+          "description": "Target passed to `make` during the build pass. Default: empty.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "build_pass": {
+          "description": "Whether to perform a build pass. Default: `true`.",
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null
+        },
+        "install_target": {
+          "description": "Target passed to `make` during the install pass. Default: \"install\".",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "install_pass": {
+          "description": "Whether to perform an install pass. Default: `true`.",
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null
+        },
+        "build_variables": {
+          "description": "Make variable assignments for the build pass.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "install_variables": {
+          "description": "Make variable assignments for the install pass.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "variables": {
+          "description": "Make or CMake variable assignments applied to both passes.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "cmake": {
+          "description": "Contents of the generated \"CMakeLists.txt\". If unset, the project's own\nfile is used.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "build_command": {
+          "description": "Command to run to build the package.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "install_command": {
+          "description": "Command to run to install the package.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "install": {
+          "description": "Files to install, by category (\"lua\", \"lib\", \"conf\", \"bin\").",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InstallSpec"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "copy_directories": {
+          "description": "Directories in the source tree to copy as-is into the rock's \"etc\" tree.\nDo not use \"lua\", \"lib\", \"rock_manifest\", or the rockspec file name.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "patches": {
+          "description": "Patches to apply before building, mapping file names to patch contents.\nLux accepts any format supported by the [`diffy`](https://docs.rs/diffy/latest/diffy/) crate.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "target_path": {
+          "description": "The cargo target directory, if it is not `<source>/target`.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "default_features": {
+          "description": "Whether to build a cargo package with default features. Default: `true`.",
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null
+        },
+        "features": {
+          "description": "Cargo features to enable.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "cargo_extra_args": {
+          "description": "Additional arguments to pass to cargo.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "package": {
+          "description": "The cargo package to build.\nRequired for \"rust-binary\" in multi-package workspaces.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "include": {
+          "description": "Additional files to copy into the rock's \"lua\" directory, mapping source\npaths to destinations.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "lang": {
+          "description": "The parser language, e.g. \"haskell\". Required for \"treesitter-parser\".",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "parser": {
+          "description": "Whether to build the tree-sitter parser. Set to `false` for query-only packages.\nDefault: `false`.",
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null
+        },
+        "generate": {
+          "description": "Whether to generate the tree-sitter parser sources before building.\nDefault: `false`.",
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": null
+        },
+        "location": {
+          "description": "Location of the tree-sitter grammar, relative to the source root.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "queries": {
+          "description": "Embedded queries to install into \"etc/queries\", mapping file names to\ncontents.",
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": null
+        }
+      }
+    },
+    "ModuleSpec": {
+      "description": "A `build.modules` entry: a source path, a list of source paths, or a\ntable describing a compiled module.",
+      "anyOf": [
+        {
+          "description": "A path to a Lua or C source file.",
+          "type": "string"
+        },
+        {
+          "description": "A list of C source files.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "description": "A table describing a compiled module.",
+          "$ref": "#/$defs/ModulePathsSpec"
+        }
+      ]
+    },
+    "ModulePathsSpec": {
+      "type": "object",
+      "properties": {
+        "sources": {
+          "description": "Path names of C sources.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "libraries": {
+          "description": "External libraries to link.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defines": {
+          "description": "C defines, e.g. \"FOO=bar\".",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "incdirs": {
+          "description": "Directories for header lookup.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "libdirs": {
+          "description": "Directories for library lookup.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "sources",
+        "libraries",
+        "defines",
+        "incdirs",
+        "libdirs"
+      ]
+    },
+    "InstallSpec": {
+      "description": "For packages which don't provide means to install modules\nand expect the user to copy the .lua or library files by hand to the proper locations.\nThis struct contains categories of files. Each category is itself a table,\nwhere the array part is a list of filenames to be copied.\nFor module directories only, in the hash part, other keys are identifiers in Lua module format,\nto indicate which subdirectory the file should be copied to.\nFor example, lua = {[\"foo.bar\"] = \"src/bar.lua\"} will copy src/bar.lua\nto the foo directory under the rock's Lua files directory.",
+      "type": "object",
+      "properties": {
+        "lua": {
+          "description": "Lua modules written in Lua.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "lib": {
+          "description": "Dynamic libraries implemented compiled Lua modules.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {}
+        },
+        "conf": {
+          "description": "Configuration files.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {}
+        },
+        "bin": {
+          "description": "Lua command-line scripts.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {}
+        }
+      }
+    },
+    "RockspecFormat": {
+      "type": "string",
+      "enum": [
+        "1.0",
+        "2.0",
+        "3.0"
+      ]
+    },
+    "RunSpec": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "description": "The command to execute when running the project",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "args": {
+          "description": "Arguments to pass to the command",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RockDescription": {
+      "description": "A rock's metadata, to be displayed on the remote package server",
+      "type": "object",
+      "properties": {
+        "summary": {
+          "description": "A one-line description of the package.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "detailed": {
+          "description": "A longer description of the package.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "license": {
+          "description": "The license used by the package.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "homepage": {
+          "description": "An URL for the project. This is not the URL for the tarball, but the address of a website.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "issues_url": {
+          "description": "An URL for the project's issue tracker.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "maintainer": {
+          "description": "Contact information for the rockspec maintainer.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "labels": {
+          "description": "A list of short strings that specify labels for categorization of this rock.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "DependencyEntry": {
+      "description": "A single `[dependencies]`-style entry: either a bare version requirement\nor a detailed table.",
+      "anyOf": [
+        {
+          "description": "A bare version requirement, e.g. \">= 1.0\".",
+          "type": "string"
+        },
+        {
+          "description": "A detailed dependency table.",
+          "$ref": "#/$defs/DependencyTableEntry"
+        }
+      ]
+    },
+    "DependencyTableEntry": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "description": "The version requirement, e.g. \"1.0\".",
+          "type": "string"
+        },
+        "opt": {
+          "description": "Whether the dependency is optional.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "pin": {
+          "description": "Whether the dependency should be pinned.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "git": {
+          "description": "A git source. Supported shorthands: \"github:owner/repo\" (default if the\nprefix is omitted), \"gitlab:owner/repo\", \"codeberg:owner/repo\", and\n\"sourcehut:owner/repo\". Full HTTPS and SSH URLs are also accepted.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "description": "A local path dependency.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rev": {
+          "description": "A commit SHA or tag to check out, separate from `version`.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "version"
+      ]
+    },
+    "ExternalDependencySpec": {
+      "description": "Can be defined in a [platform-agnostic](https://github.com/luarocks/luarocks/wiki/platform-agnostic-external-dependencies) manner",
+      "type": "object",
+      "properties": {
+        "header": {
+          "description": "A header file, e.g. \"foo.h\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "library": {
+          "description": "A library file, e.g. \"libfoo.so\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "RockSourceTemplate": {
+      "description": "Template for generating a remote rockspec source\n\nVariables that can be substituted in each of the fields:\n- `$(PACKAGE)`: Package name\n- `$(VERSION)`: Package version\n- `$(REF)`: Git tag or revision (prioritising tags if present)\n\nFields can also be substituted with environment variables.",
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "URL template for `SemVer` releases",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dev": {
+          "description": "URL template for `DevVer` releases",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "file": {
+          "description": "File name of the source archive.\nCan be omitted if it can be inferred from the generated URL.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dir": {
+          "description": "Name of the directory created when the source archive is unpacked.\nCan be omitted if it can be inferred from the `file` field.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tag": {
+          "description": "The tag or revision to be checked out if the source URL is a git source.\nIf unset, Lux will try to auto-detect it.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "branch": {
+          "description": "The branch to be checked out if the source URL is a git source.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "TestSpecInternal": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The test backend: \"busted\", \"busted-nlua\", \"tiniest\", or \"command\".\nIf unset, Lux auto-detects a backend (e.g. \"busted\" when a \".busted\"\nfile or the \"busted\" dependency is present).",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TestType"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "flags": {
+          "description": "Extra CLI flags to pass to the test backend.",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "command": {
+          "description": "Shell command to run as the test suite. Mutually exclusive with `script`.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "script": {
+          "description": "Lua script to run as the test suite. Mutually exclusive with `command`.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        }
+      }
+    },
+    "TestType": {
+      "type": "string",
+      "enum": [
+        "busted",
+        "busted-nlua",
+        "tiniest",
+        "command"
+      ]
+    },
+    "DeploySpec": {
+      "description": "An undocumented part of the rockspec format.\n\nSpecifies additional install options",
+      "type": "object",
+      "properties": {
+        "wrap_bin_scripts": {
+          "description": "Whether to wrap installed Lua bin scripts to be executed with\nthe detected or configured Lua installation.\nDefaults to `true`.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "ProjectSpec": {
+      "description": "Lux-specific project configuration.\n\nThis is not part of the rockspec format and is ignored when generating a rockspec.",
+      "type": "object",
+      "properties": {
+        "root_dir": {
+          "description": "The project root directory, relative to the directory containing the `lux.toml`.\nUseful for multi-project workspaces, where the build files\n(e.g. the cargo workspace `Cargo.toml`) do not live next to the `lux.toml`.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

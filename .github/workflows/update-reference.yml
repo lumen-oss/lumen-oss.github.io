@@ -24,15 +24,21 @@ jobs:
         run: scripts/src/generate-cli-reference.lua
       - name: Generate Lua API reference
         run: scripts/src/generate-lua-api-reference.lua
+      - name: Generate schema reference
+        run: scripts/src/generate-schema-reference.lua
       - uses: peter-evans/create-pull-request@v7
         with:
           add-paths: |
             docs/reference/cli.md
             docs/reference/lua-api.md
+            docs/reference/config.md
+            docs/reference/lux-toml-schema.md
+            static/schemas/config.schema.json
+            static/schemas/lux-toml.schema.json
           commit-message: "docs: update reference"
           title: "docs: update reference"
           body: |
-            Automated update of the CLI and Lua API reference.
+            Automated update of the CLI, Lua API, and schema reference.
           branch: update-reference
           delete-branch: true
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}

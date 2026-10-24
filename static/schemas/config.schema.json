@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "config.toml",
+  "description": "Configuration for Lux, located at the path reported by `lx config`.",
+  "type": "object",
+  "properties": {
+    "server": {
+      "description": "The LuaRocks repository server to fetch rocks and rockspecs from.\nDefault: \"https://luarocks.org/\".",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    "extra_servers": {
+      "description": "Additional LuaRocks repository servers.",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "default": null
+    },
+    "manifest_cache_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    "no_manifest_cache": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "extra_wally_registries": {
+      "description": "Additional wally package registries (git-index URLs), in addition to the\nofficial wally index.",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "default": null
+    },
+    "namespace": {
+      "description": "The LuaRocks server namespace to use.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lua_version": {
+      "description": "The Lua version to use. Default: the detected installed Lua version.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LuaVersion"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "user_tree": {
+      "description": "The tree in which to install rocks.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "workspace_tree": {
+      "description": "The tree to use when in a workspace.\nDefault: a \".lux\" directory in the workspace root.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lua_dir": {
+      "description": "The directory in which to install Lua if it is not found.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cache_dir": {
+      "description": "The cache directory, e.g. for LuaRocks manifests.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data_dir": {
+      "description": "The data directory, in which the default user install tree resides.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vendor_dir": {
+      "description": "A directory with locally vendored sources and rockspecs, used instead of\na remote server.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "enable_development_packages": {
+      "description": "Whether to fetch development/scm rocks. Default: `false`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "verbose": {
+      "description": "Whether to display verbose output of executed commands. Default: `false`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "no_progress": {
+      "description": "Whether to disable progress bars and spinners. Default: `false`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "no_prompt": {
+      "description": "Whether to skip prompts, selecting the default option. Default: `false`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "timeout": {
+      "description": "Timeout for network operations, in seconds. `0` disables the timeout.\nDefault: `30`.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "uint64",
+      "minimum": 0
+    },
+    "max_jobs": {
+      "description": "Maximum number of parallel jobs, e.g. for downloads and installs.\n`0` means no limit.",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "uint",
+      "minimum": 0
+    },
+    "variables": {
+      "description": "Variable names mapped to their values. Lux substitutes these in the\n`lux.toml` and in rockspecs before building.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "access_tokens": {
+      "description": "Access tokens for fetching sources from private hosts, mapped by host.\nThese can also be set via the `LUX_ACCESS_TOKENS` environment variable.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      },
+      "writeOnly": true
+    },
+    "external_deps": {
+      "$ref": "#/$defs/ExternalDependencySearchConfig",
+      "default": {
+        "bin_patterns": [
+          "?"
+        ],
+        "include_patterns": [
+          "?.h"
+        ],
+        "lib_patterns": [
+          "lib?.so",
+          "lib?.a"
+        ],
+        "bin_subdir": "bin",
+        "include_subdir": "include",
+        "lib_subdirs": [
+          "lib",
+          "lib64"
+        ],
+        "search_prefixes": [
+          "/usr",
+          "/usr/local",
+          "/opt/local",
+          "/opt"
+        ],
+        "prefixes": {}
+      }
+    },
+    "build": {
+      "$ref": "#/$defs/BuildConfig",
+      "default": {
+        "profile": null,
+        "runner": []
+      }
+    },
+    "user_agent": {
+      "description": "The user agent to use when making web requests.\nDefault: \"lux/<version>\" (CLI), \"lux-lua/<version>\" (lux-lua) or \"lux-lib/<version>\".",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "generate_luarc": {
+      "description": "Whether to generate a \".luarc.json\" on build. Default: `true`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "luarc_file_name": {
+      "description": "The Lua language server configuration file name. Default: \".luarc.json\".",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "wrap_bin_scripts": {
+      "description": "Whether to wrap installed Lua bin scripts to run with the detected or\nconfigured Lua installation. Default: `true`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "package_types": {
+      "description": "Which package types to include in searches.",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RemotePackageTypeFilterSpec"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "no_tfa": {
+      "description": "Whether to disable prompts for two-factor authentication (2FA) codes.\nDefault: `false`.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "LuaVersion": {
+      "type": "string",
+      "enum": [
+        "5.1",
+        "5.2",
+        "5.3",
+        "5.4",
+        "5.5",
+        "jit",
+        "jit5.2",
+        "luau"
+      ]
+    },
+    "ExternalDependencySearchConfig": {
+      "description": "Used as a fallback when searching for external dependencies if they\ncannot be found using pkg-config.",
+      "type": "object",
+      "properties": {
+        "bin_patterns": {
+          "description": "Patterns for binary files",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "?"
+          ]
+        },
+        "include_patterns": {
+          "description": "Patterns for header files",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "?.h"
+          ]
+        },
+        "lib_patterns": {
+          "description": "Patterns for library files",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "lib?.so",
+            "lib?.a"
+          ]
+        },
+        "bin_subdir": {
+          "description": "Default binary subdirectory",
+          "type": "string",
+          "default": "bin"
+        },
+        "include_subdir": {
+          "description": "Default include subdirectory",
+          "type": "string",
+          "default": "include"
+        },
+        "lib_subdirs": {
+          "description": "Default library subdirectory",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "lib",
+            "lib64"
+          ]
+        },
+        "search_prefixes": {
+          "description": "System-wide search paths",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "/usr",
+            "/usr/local",
+            "/opt/local",
+            "/opt"
+          ]
+        },
+        "prefixes": {
+          "description": "Known installation prefixes for specific dependencies.\nThese can also be set via environment variables.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "prefixes"
+      ]
+    },
+    "BuildConfig": {
+      "description": "Configuration for the build process.",
+      "type": "object",
+      "properties": {
+        "profile": {
+          "description": "The build profile to use when compiling packages.\nDefault: [`BuildProfile::Release`]",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Profile"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runner": {
+          "description": "Command prefix with which to wrap all build commands.\n\nIf set, every command spawned by the build backends is invoked as\n`runner + [command, arguments...]`.\n\nIf unset, no wrapping is performed.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "Profile": {
+      "description": "The build profile to use when compiling packages.",
+      "type": "string",
+      "enum": [
+        "release",
+        "dev"
+      ]
+    },
+    "RemotePackageTypeFilterSpec": {
+      "type": "object",
+      "properties": {
+        "rockspec": {
+          "description": "Include Rockspec",
+          "type": "boolean"
+        },
+        "src": {
+          "description": "Include Src",
+          "type": "boolean"
+        },
+        "binary": {
+          "description": "Include Binary",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "rockspec",
+        "src",
+        "binary"
+      ]
+    }
+  }
+}

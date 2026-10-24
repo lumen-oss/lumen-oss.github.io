@@ -89,6 +89,8 @@ Add this to the bottom of your `lux.toml`:
 type = "busted"
 ```
 
+See the [test schema](/reference/lux-toml-schema#test) for all backends.
+
 ## Running the Tests
 
 We're now ready to run our tests! `lx test` will run all the tests in your

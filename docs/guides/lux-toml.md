@@ -5,7 +5,8 @@ sidebar_position: 3
 ---
 
 This guide shows you how to configure the core sections of a `lux.toml`.
-For a complete field listing, see the [lux.toml reference](/reference/lux-toml).
+See the [lux.toml reference](/reference/lux-toml) or the
+[lux.toml schema reference](/reference/lux-toml-schema).
 
 ## Minimum required fields
 
@@ -75,5 +76,6 @@ license = "MIT"
 
 ## Next steps
 
-For a full reference of all fields, build backends, and test options, see the
-[lux.toml reference](/reference/lux-toml).
+See the [lux.toml reference](/reference/lux-toml) or the
+[lux.toml schema reference](/reference/lux-toml-schema). Download the
+[JSON Schema](/schemas/lux-toml.schema.json).

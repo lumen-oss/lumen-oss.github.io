@@ -79,6 +79,9 @@ args = [ "src/main.lua" ]
 type = "builtin"
 ```
 
+See the [lux.toml reference](/reference/lux-toml) or the
+[lux.toml schema reference](/reference/lux-toml-schema).
+
 ## Checking our Progress
 
 To check whether our project was made successfully, first make sure you're in

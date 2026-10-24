@@ -48,6 +48,8 @@
             yarn
             lux-cli
             emmylua-doc-cli
+            typescript-language-server
+            nodejs
             lua
             groff
             pandoc

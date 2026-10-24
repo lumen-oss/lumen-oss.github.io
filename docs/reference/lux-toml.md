@@ -10,6 +10,9 @@ It does not support advanced specifications like platform overrides.
 Those can be declared with an [`extra.rockspec`](/guides/rockspec).
 :::
 
+See also the [lux.toml schema reference](/reference/lux-toml-schema) or download the
+[JSON Schema](/schemas/lux-toml.schema.json).
+
 ## `package`
 
 The name of the rock (mandatory).

@@ -25,7 +25,8 @@ print(args.input)
 ```
 
 `lx run` executes our project's entrypoint, the file we configured in the
-`[run]` section of `lux.toml`, and passes any arguments along to it.
+[`[run]` section](/reference/lux-toml-schema#run) of `lux.toml`, and passes
+any arguments along to it.
 Run the following to see your code in action:
 
 ```sh

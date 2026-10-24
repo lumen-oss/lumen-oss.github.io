@@ -95,6 +95,8 @@ argparse = "=0.7"
 type = "builtin"
 ```
 
+See the [source schema](/reference/lux-toml-schema#source) for all fields.
+
 ## Publishing
 
 With the API key in hand, we can now publish our rock.
