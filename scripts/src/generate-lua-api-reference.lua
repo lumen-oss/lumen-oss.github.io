@@ -63,10 +63,11 @@ end
 local function bump_headings(text)
   local lines = {}
   for line in text:gmatch("([^\n]*)\n?") do
-    if line:find("^#+ ") then
-      line = "#" .. line
+    local updated = line
+    if updated:find("^#+ ") then
+      updated = "#" .. updated
     end
-    table.insert(lines, line)
+    table.insert(lines, updated)
   end
   return table.concat(lines, "\n")
 end
@@ -77,25 +78,26 @@ local function escape_mdx(text)
   local in_fence = false
   local lines = {}
   for line in text:gmatch("([^\n]*)\n?") do
-    if line:find("^```") then
+    local updated = line
+    if updated:find("^```") then
       in_fence = not in_fence
     elseif not in_fence then
       local spans = {}
       local n = 0
-      line = line:gsub("`[^`]*`", function(span)
+      updated = updated:gsub("`[^`]*`", function(span)
         n = n + 1
         spans[n] = span
         return "\x00" .. n .. "\x00"
       end)
-      line = line:gsub("<", "&lt;")
-      line = line:gsub(">", "&gt;")
-      line = line:gsub("{", "&#123;")
-      line = line:gsub("}", "&#125;")
-      line = line:gsub("\x00(%d+)\x00", function(id)
+      updated = updated:gsub("<", "&lt;")
+      updated = updated:gsub(">", "&gt;")
+      updated = updated:gsub("{", "&#123;")
+      updated = updated:gsub("}", "&#125;")
+      updated = updated:gsub("\x00(%d+)\x00", function(id)
         return spans[tonumber(id)]
       end)
     end
-    table.insert(lines, line)
+    table.insert(lines, updated)
   end
   return table.concat(lines, "\n")
 end
