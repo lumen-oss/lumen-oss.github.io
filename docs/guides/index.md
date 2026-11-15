@@ -28,6 +28,7 @@ Want to get better at using Lux? Look no further than this set of guides.
 
 ## Security
 - [How to sandbox package builds](/guides/sandboxing-builds)
+- [How to verify package signatures](/guides/verifying-packages)
 
 ## External Tooling
 - [How to use Neovim with Lux](/guides/neovim)
