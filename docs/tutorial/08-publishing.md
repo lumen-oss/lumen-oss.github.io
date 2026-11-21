@@ -115,6 +115,12 @@ We also provide [a GitHub action](https://github.com/marketplace/actions/luxacti
 which you can use to automate this.
 :::
 
+:::tip
+You can sign your uploads and include a source rock with
+`lx upload --sign-protocol openpgp --src-rock`.
+See [Signing uploads](/guides/publishing#signing-uploads).
+:::
+
 ## Distributing an archive or a binary
 
 Now that our package is on luarocks, let's look at two ways to distribute it

@@ -31,7 +31,7 @@ dev = "git+https://github.com/my-username/my-project.git"
 ...
 ```
 
-`url` is a SemVer release URL template; Lux substitutes `$(REF)` with the tag or revision.
+`url` is a SemVer release URL template. Lux substitutes `$(REF)` with the tag or revision.
 `dev` is a dev release URL template.
 
 :::note
@@ -42,6 +42,12 @@ or any environment variable via `$(VAR_NAME)`.
 
 :::important
 The `dev` URL must use the `git+https://` protocol to instruct Lux to use `git`.
+:::
+
+:::important
+`lx upload` requires a remote source. A project that still uses the default
+local source is for local development and cannot be uploaded. Set
+`[source].url` and `[source].dev` before publishing.
 :::
 
 See the [source schema](/reference/lux-toml#source) for all fields.
@@ -119,6 +125,36 @@ LUX_API_KEY=your-key lx upload
 :::note
 Lux also provides a [GitHub Action](https://github.com/marketplace/actions/luxaction)
 for automating publishing in CI/CD.
+:::
+
+## Signing uploads
+
+Lux can sign the rockspec and the source rock with OpenPGP.
+
+By default, `lx upload` signs the rockspec with your default GPG key and
+uploads the detached signature and the signer's public key alongside it.
+To upload a source rock as well, pass `--src-rock`:
+
+```sh
+lx upload --src-rock
+```
+
+The source rock is packed into `<package>-<version>.src.rock`, signed, and
+uploaded after the rockspec. For a git source, the source files are placed in a
+top-level `<repository>/` directory inside the rock. For a URL source, the
+original archive is included.
+
+The signing key is the default key reported by `gpg --list-secret-keys`.
+Use `--sign-protocol <protocol>` to choose another protocol, or
+`--sign-protocol none` to skip signing.
+
+:::note
+Only the rockspec and the source rock are signed, not binary rocks.
+:::
+
+:::tip
+In CI, make the signing key available in `GNUPGHOME` and unlock it before
+running `lx upload`, for example with a dedicated GPG agent.
 :::
 
 ## Distributing artifacts
